@@ -195,7 +195,7 @@
       "__type__": "cc.Vec3",
       "x": 0,
       "y": 0,
-      "z": 623.5382907247958
+      "z": 411.3620667976084
     },
     "_scale": {
       "__type__": "cc.Vec3",
@@ -408,7 +408,7 @@
       }
     ],
     "_prefab": null,
-    "_opacity": 130,
+    "_opacity": 170,
     "_color": {
       "__type__": "cc.Color",
       "r": 255,
@@ -1342,7 +1342,7 @@
     "_texture": {
       "__uuid__": "d0a82d39-bede-46c4-b698-c81ff0dedfff"
     },
-    "_stopped": false,
+    "_stopped": true,
     "playOnLoad": true,
     "autoRemoveOnFinish": false,
     "totalParticles": 200,
@@ -2264,7 +2264,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "icon_equip_sword",
+    "_name": "iconSword",
     "_objFlags": 0,
     "_parent": {
       "__id__": 41
@@ -2701,7 +2701,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "icon_equip_helmet_1",
+    "_name": "iconHelmet",
     "_objFlags": 0,
     "_parent": {
       "__id__": 54
@@ -3048,7 +3048,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "icon_bag",
+    "_name": "iconBag",
     "_objFlags": 0,
     "_parent": {
       "__id__": 61
@@ -3395,7 +3395,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "icon_flag_sword",
+    "_name": "iconFlagSword",
     "_objFlags": 0,
     "_parent": {
       "__id__": 68
@@ -7757,7 +7757,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "icon_equip_shield",
+    "_name": "iconSword",
     "_objFlags": 0,
     "_parent": {
       "__id__": 161
@@ -7847,7 +7847,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "icon_equip_sword",
+    "_name": "iconShield",
     "_objFlags": 0,
     "_parent": {
       "__id__": 161
@@ -8509,13 +8509,15 @@
       "__id__": 179
     },
     "_enabled": true,
-    "_defaultClip": null,
+    "_defaultClip": {
+      "__uuid__": "0b455040-10d2-4ad3-8216-bcb1e20f99b6"
+    },
     "_clips": [
       {
         "__uuid__": "0b455040-10d2-4ad3-8216-bcb1e20f99b6"
       }
     ],
-    "playOnLoad": false,
+    "playOnLoad": true,
     "_id": "4djYivViVI16yG3TYGM9af"
   },
   {
