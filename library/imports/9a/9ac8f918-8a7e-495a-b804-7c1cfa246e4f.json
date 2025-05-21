@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "PlayGold Atlas",
+    "texture": "d7217c03-768c-47cb-8831-bc2b7d0dc4f7",
+    "atlas": "",
+    "rect": [
+      17,
+      64,
+      206,
+      179
+    ],
+    "offset": [
+      -8,
+      -25.5
+    ],
+    "originalSize": [
+      256,
+      256
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

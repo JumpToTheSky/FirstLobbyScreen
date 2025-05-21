@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "Slider_Handle_Handle",
+    "texture": "2c764321-1289-435e-b928-a14b3c4a6c9f",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      56,
+      55
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      56,
+      55
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "Title_Ribbon_03_Red",
+    "texture": "f30171b8-0906-4528-8c23-9ed9689eb82d",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      472,
+      84
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      472,
+      84
+    ],
+    "capInsets": [
+      216,
+      46,
+      229,
+      38
+    ]
+  }
+}

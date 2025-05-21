@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "BasicFrame_Hexagon_68",
+    "texture": "111eed3f-0b5b-4dae-b0dd-a73803e9a9d6",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      68,
+      68
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      68,
+      68
+    ],
+    "capInsets": [
+      18,
+      33,
+      13,
+      34
+    ]
+  }
+}
