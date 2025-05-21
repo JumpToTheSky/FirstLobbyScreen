@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "Label_Bubble",
+    "texture": "b16d8f0a-b10f-4698-97a5-c1887064bf26",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      61,
+      39
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      61,
+      39
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

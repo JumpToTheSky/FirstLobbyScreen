@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "Icon_BossDungeon",
+    "texture": "de0d29f4-380d-4457-8770-b106c156c950",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      211,
+      194
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      211,
+      194
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

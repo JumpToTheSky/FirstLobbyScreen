@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "TabMenu_02_Focus_Yellow",
+    "texture": "dcfd476d-7eb5-4d63-b96e-bc56c5901265",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      192,
+      41
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      192,
+      41
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

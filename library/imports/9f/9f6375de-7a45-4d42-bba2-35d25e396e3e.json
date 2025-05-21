@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "Title_Flag_01_Shadow_White_Bg",
+    "texture": "38d3ec72-00b5-4db9-805b-33533837a34e",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      568,
+      147
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      568,
+      147
+    ],
+    "capInsets": [
+      284,
+      43,
+      284,
+      79
+    ]
+  }
+}
