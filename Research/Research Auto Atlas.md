@@ -1,4 +1,4 @@
-### 1. Auto Atlas: Mục đích và Lý do sử dụng
+### 1. Auto Atlas:
 
 **1.1. Bối cảnh:**
 Trong quá trình phát triển game, việc sử dụng nhiều hình ảnh nhỏ (sprite, icon, thành phần UI) là điều phổ biến. Tuy nhiên, việc GPU (bộ xử lý đồ họa) phải xử lý từng hình ảnh riêng lẻ sẽ dẫn đến số lượng "Draw Call" (lệnh vẽ) tăng cao. Mỗi Draw Call đều có chi phí về hiệu suất, và số lượng lớn Draw Call có thể gây ra tình trạng giảm FPS (khung hình trên giây), đặc biệt trên các thiết bị có cấu hình hạn chế.
