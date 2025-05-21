@@ -434,11 +434,6 @@
     "meta": 1747795106120,
     "relativePath": "Animation/glowRaidAnim.anim"
   },
-  "538605dc-79b1-4d74-9793-1657ad6a0c1f": {
-    "asset": 1747795028919,
-    "meta": 1747795106120,
-    "relativePath": "Animation/playUnderLineAnim.anim"
-  },
   "0b455040-10d2-4ad3-8216-bcb1e20f99b6": {
     "asset": 1747795028919,
     "meta": 1747795106121,
@@ -475,8 +470,8 @@
     "relativePath": "Scene"
   },
   "2d2f792f-a40c-49bb-a189-ed176a246e49": {
-    "asset": 1747814503558,
-    "meta": 1747814503656,
+    "asset": 1747823552920,
+    "meta": 1747823552993,
     "relativePath": "Scene/FirstScene.fire"
   },
   "4734c20c-0db8-4eb2-92ea-e692f4d70934": {
@@ -694,11 +689,6 @@
     "meta": 1747795107968,
     "relativePath": "Sprite/HeaderIcon/Slider_LevelProfile_SliderBottom_Border.png"
   },
-  "dcfd476d-7eb5-4d63-b96e-bc56c5901265": {
-    "asset": 1747795028928,
-    "meta": 1747795107975,
-    "relativePath": "Sprite/Middle/TabMenu_02_Focus_Yellow.png"
-  },
   "d2a74ddf-e1dd-43ba-80e5-9c61e86c61dd": {
     "asset": 1747795028928,
     "meta": 1747795107976,
@@ -744,11 +734,6 @@
     "meta": 1747811157245,
     "relativePath": "Script/soundController.js"
   },
-  "c9d6f6a3-9b46-4f5c-8d97-083e5ece4d13": {
-    "asset": 1747814088048,
-    "meta": 1747814088057,
-    "relativePath": "New Folder"
-  },
   "9ad1b77f-675c-4c47-8ba4-f2d01cc2d7cb": {
     "asset": 1747814408610,
     "meta": 1747814408619,
@@ -773,5 +758,30 @@
     "asset": 1747815442183,
     "meta": 1747815442195,
     "relativePath": "Sprite/ScreenBackground"
+  },
+  "7f93432c-8a6f-4b88-afd8-a464dd56b531": {
+    "asset": 1747819154873,
+    "meta": 1747819154988,
+    "relativePath": "Sprite/Middle/Joystick_Direction_Bg.png"
+  },
+  "c643e731-6a78-4ce9-b4f7-a1dfe2f259b9": {
+    "asset": 1747820985749,
+    "meta": 1747820985866,
+    "relativePath": "Sprite/Middle/SlotFrame_Circle_White_BgInnerDeco.png"
+  },
+  "f399828f-fc0a-48a8-8117-8698b54a90c1": {
+    "asset": 1747822212670,
+    "meta": 1747822212772,
+    "relativePath": "Sprite/Middle/Joystick_Action_s_BorderLight.png"
+  },
+  "773ebead-391a-4d78-aea4-d49e5bd526ca": {
+    "asset": 1747822412770,
+    "meta": 1747822412878,
+    "relativePath": "Sprite/Middle/SwordBadge_Sword.png"
+  },
+  "c779b63d-4688-4455-b79a-dbf5c4e409ab": {
+    "asset": 1747823881723,
+    "meta": 1747823881819,
+    "relativePath": "Animation/rightRotate.anim"
   }
 }

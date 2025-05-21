@@ -1,22 +1,22 @@
 {
   "__type__": "cc.SpriteFrame",
   "content": {
-    "name": "TabMenu_02_Focus_Yellow",
-    "texture": "dcfd476d-7eb5-4d63-b96e-bc56c5901265",
+    "name": "SlotFrame_Circle_White_BgInnerDeco",
+    "texture": "c643e731-6a78-4ce9-b4f7-a1dfe2f259b9",
     "atlas": "",
     "rect": [
       0,
       0,
-      192,
-      41
+      130,
+      130
     ],
     "offset": [
       0,
       0
     ],
     "originalSize": [
-      192,
-      41
+      130,
+      130
     ],
     "capInsets": [
       0,
