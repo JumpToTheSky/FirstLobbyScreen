@@ -5,76 +5,84 @@
       "main": true,
       "url": "app://editor/index.html",
       "windowType": "dockable",
-      "x": 94,
-      "y": 38,
-      "width": 1634,
-      "height": 993,
+      "x": 0,
+      "y": 37,
+      "width": 1728,
+      "height": 1080,
       "layout": {
         "children": [
           {
             "children": [
               {
-                "active": 0,
                 "children": [
-                  "hierarchy"
+                  {
+                    "active": 0,
+                    "children": [
+                      "hierarchy"
+                    ],
+                    "height": 627,
+                    "type": "panel",
+                    "width": 271.203125
+                  },
+                  {
+                    "active": 0,
+                    "children": [
+                      "assets"
+                    ],
+                    "height": 391,
+                    "type": "panel",
+                    "width": 271.203125
+                  }
                 ],
-                "height": 570,
-                "type": "panel",
-                "width": 233
+                "height": 1020,
+                "type": "dock-v",
+                "width": 271.203125
+              },
+              {
+                "children": [
+                  {
+                    "active": 0,
+                    "children": [
+                      "scene",
+                      "node-library"
+                    ],
+                    "height": 534,
+                    "type": "panel",
+                    "width": 1068.078125
+                  },
+                  {
+                    "active": 0,
+                    "children": [
+                      "console",
+                      "timeline",
+                      "game-window"
+                    ],
+                    "height": 484,
+                    "type": "panel",
+                    "width": 1068.078125
+                  }
+                ],
+                "height": 1020,
+                "type": "dock-v",
+                "width": 1068.078125
               },
               {
                 "active": 0,
                 "children": [
-                  "assets"
+                  "inspector",
+                  "cocos-services"
                 ],
-                "height": 333,
+                "height": 1020,
                 "type": "panel",
-                "width": 233
+                "width": 384.703125
               }
             ],
-            "height": 905,
-            "type": "dock-v",
-            "width": 233
-          },
-          {
-            "children": [
-              {
-                "active": 0,
-                "children": [
-                  "scene"
-                ],
-                "height": 473,
-                "type": "panel",
-                "width": 913.984375
-              },
-              {
-                "active": 1,
-                "children": [
-                  "console",
-                  "timeline",
-                  "game-window"
-                ],
-                "height": 430,
-                "type": "panel",
-                "width": 913.984375
-              }
-            ],
-            "height": 905,
-            "type": "dock-v",
-            "width": 913.984375
-          },
-          {
-            "active": 0,
-            "children": [
-              "inspector",
-              "cocos-services"
-            ],
-            "height": 905,
-            "type": "panel",
-            "width": 483
+            "height": 1020,
+            "type": "dock-h",
+            "width": 1728
           }
         ],
-        "type": "dock-h"
+        "type": "dock-v"
       },
       "panels": [
         "hierarchy",
@@ -84,7 +92,8 @@
         "game-window",
         "inspector",
         "cocos-services",
-        "scene"
+        "scene",
+        "node-library"
       ]
     }
   },
@@ -100,6 +109,12 @@
       "y": 233,
       "width": 584,
       "height": 554
+    },
+    "node-library": {
+      "x": 969,
+      "y": 266,
+      "width": 300,
+      "height": 508
     }
   }
 }
