@@ -52,6 +52,15 @@ cc.Class({
     decreaseBgmVolume(amount = 1) {
         this.setBgmVolume(this.bgmVolume - amount);
     },
+
+    updateVolumeLabel() {
+        if (this.volumeDisplayLabel) {
+            // Chuyển đổi âm lượng (0.0 - 1.0) sang phần trăm (0% - 100%)
+            let volumePercent = Math.round(this.bgmVolume * 100);
+            this.volumeDisplayLabel.string = `Âm lượng: ${volumePercent}%`;
+        }
+    },
+    
     onDestroy() {
     },
 

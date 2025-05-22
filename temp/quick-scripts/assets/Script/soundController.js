@@ -56,6 +56,13 @@ cc.Class({
 
         this.setBgmVolume(this.bgmVolume - amount);
     },
+    updateVolumeLabel: function updateVolumeLabel() {
+        if (this.volumeDisplayLabel) {
+            // Chuyển đổi âm lượng (0.0 - 1.0) sang phần trăm (0% - 100%)
+            var volumePercent = Math.round(this.bgmVolume * 100);
+            this.volumeDisplayLabel.string = "\xC2m l\u01B0\u1EE3ng: " + volumePercent + "%";
+        }
+    },
     onDestroy: function onDestroy() {}
 });
 
