@@ -705,8 +705,8 @@
     "relativePath": "Sprite/Middle/Title_Flag_01_Shadow_White_Bg.png"
   },
   "7d9810a9-06e7-4d1d-8c61-4cfe306a65ca": {
-    "asset": 1747908667018,
-    "meta": 1747908667032,
+    "asset": 1747912188335,
+    "meta": 1747912188370,
     "relativePath": "Scene/sceneRoom.fire"
   },
   "4915af1c-84f3-4694-933e-cabc873cb67c": {
@@ -790,8 +790,8 @@
     "relativePath": "Script/labelController.js"
   },
   "681b3e6c-7c35-41ae-9c67-9b18783d19b2": {
-    "asset": 1747910074740,
-    "meta": 1747910077258,
+    "asset": 1747912214490,
+    "meta": 1747912219426,
     "relativePath": "Script/soundController.js"
   }
 }

@@ -30,6 +30,18 @@ cc.Class({
         loopBgm: {
             default: true,
             tooltip: "Lặp lại nhạc nền khi kết thúc?"
+        },
+        volumeDisplayLabel: {
+            default: null,
+            type: cc.Label,
+            tooltip: "Label để hiển thị giá trị âm lượng BGM"
+        },
+        volumeStep: {
+            default: 1,
+            type: cc.Float,
+            min: 0.5, // Bước nhỏ nhất
+            max: 1, // Bước lớn nhất
+            tooltip: "Lượng âm lượng thay đổi mỗi lần nhấn nút"
         }
     },
 
@@ -39,6 +51,7 @@ cc.Class({
 
     onLoad: function onLoad() {
         this.playBgm();
+        this.updateVolumeLabel();
     },
     playBgm: function playBgm() {
         this.current = cc.audioEngine.play(this.audioBgm, false, 1);
@@ -47,19 +60,21 @@ cc.Class({
         this.current = cc.audioEngine.play(this.audioClick, false, 1);
     },
     increaseBgmVolume: function increaseBgmVolume() {
-        var amount = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
-
-        this.setBgmVolume(this.bgmVolume + amount);
+        this.setBgmVolume(this.bgmVolume + this.volumeStep);
+        playSoundClick();
     },
     decreaseBgmVolume: function decreaseBgmVolume() {
-        var amount = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
-
-        this.setBgmVolume(this.bgmVolume - amount);
+        this.setBgmVolume(this.bgmVolume - this.volumeStep);
+        playSoundClick();
+    },
+    setBgmVolume: function setBgmVolume(volume) {
+        this.bgmVolume = this.bgmVolume = Math.max(0, Math.min(10, volume));
+        cc.audioEngine.setVolume(this.current, this.bgmVolume);
+        this.updateVolumeLabel();
     },
     updateVolumeLabel: function updateVolumeLabel() {
         if (this.volumeDisplayLabel) {
-            // Chuyển đổi âm lượng (0.0 - 1.0) sang phần trăm (0% - 100%)
-            var volumePercent = Math.round(this.bgmVolume * 100);
+            var volumePercent = Math.round(this.bgmVolume * 10);
             this.volumeDisplayLabel.string = "\xC2m l\u01B0\u1EE3ng: " + volumePercent + "%";
         }
     },
