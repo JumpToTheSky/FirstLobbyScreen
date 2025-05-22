@@ -39,7 +39,7 @@ var Rect = cc.Class({
     }
 });
 var Square = cc.Class({
-    extends: Rectf,
+    extends: Rect,
     ctor: function () {
         cc.log("Square");
     },
