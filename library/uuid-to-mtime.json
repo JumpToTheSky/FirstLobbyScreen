@@ -705,8 +705,8 @@
     "relativePath": "Sprite/Middle/Title_Flag_01_Shadow_White_Bg.png"
   },
   "7d9810a9-06e7-4d1d-8c61-4cfe306a65ca": {
-    "asset": 1747905184225,
-    "meta": 1747905184341,
+    "asset": 1747908667018,
+    "meta": 1747908667032,
     "relativePath": "Scene/sceneRoom.fire"
   },
   "4915af1c-84f3-4694-933e-cabc873cb67c": {
@@ -784,14 +784,14 @@
     "meta": 1747823881819,
     "relativePath": "Animation/rightRotate.anim"
   },
-  "23de5c98-5436-4b51-a54d-0758a43a8d6b": {
-    "asset": 1747904224182,
-    "meta": 1747904241313,
-    "relativePath": "Script/labelController.js"
-  },
   "babacb52-1c40-4aba-913b-53640d418900": {
     "asset": 1747904405669,
     "meta": 1747904406918,
     "relativePath": "Script/declareClass.js"
+  },
+  "23de5c98-5436-4b51-a54d-0758a43a8d6b": {
+    "asset": 1747908634979,
+    "meta": 1747908638522,
+    "relativePath": "Script/labelController.js"
   }
 }

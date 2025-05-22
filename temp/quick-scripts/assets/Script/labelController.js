@@ -2,7 +2,7 @@
 cc._RF.push(module, '23de5yYVDZLUaVNB1ikOo1r', 'labelController', __filename);
 // Script/labelController.js
 
-'use strict';
+"use strict";
 
 cc.Class({
     extends: cc.Component,
@@ -11,13 +11,22 @@ cc.Class({
         labelComponent: {
             default: null,
             type: cc.Label
+        },
+        maxWidthForLabel: {
+            default: 180,
+            type: cc.Float,
+            tooltip: "Chiều rộng tối đa của Label trước khi văn bản xuống dòng"
         }
 
     },
 
     start: function start() {
         if (this.labelComponent) {
-            this.labelComponent.string = "Chào từ script Say-Hello!";
+            this.labelComponent.string = "Chào từ script labelController!";
+            this.labelComponent.overflow = cc.Label.Overflow.RESIZE_HEIGHT;
+            this.labelComponent.node.width = this.maxWidthForLabel;
+            this.lblHello.horizontalAlign = cc.Label.HorizontalAlign.LEFT;
+            this.lblHello.verticalAlign = cc.Label.VerticalAlign.TOP;
         }
     },
     testFunc: function testFunc() {
