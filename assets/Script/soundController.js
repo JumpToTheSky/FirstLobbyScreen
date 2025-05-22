@@ -15,12 +15,23 @@ cc.Class({
         audioBgm: {
             default: null,
             type: cc.AudioClip
+        },
+        bgmVolume: {
+            default: 10, 
+            type: cc.Float,
+            range: [0, 10, 1], 
+            slide: true,
+            tooltip: "Âm lượng ban đầu của nhạc nền"
+        },
+        loopBgm: {
+            default: true, 
+            tooltip: "Lặp lại nhạc nền khi kết thúc?"
         }
     },
 
-    start() {
+    // start() {
 
-    },
+    // },
 
     onLoad() {
         this.playBgm();
@@ -34,7 +45,14 @@ cc.Class({
         this.current = cc.audioEngine.play(this.audioClick, false, 1);
 
     },
+    increaseBgmVolume(amount = 1) {
+        this.setBgmVolume(this.bgmVolume + amount);
+    },
+
+    decreaseBgmVolume(amount = 1) {
+        this.setBgmVolume(this.bgmVolume - amount);
+    },
     onDestroy() {
-    }
+    },
 
 });

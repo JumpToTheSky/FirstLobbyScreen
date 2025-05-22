@@ -729,11 +729,6 @@
     "meta": 1747810811037,
     "relativePath": "Sound/coin_counting.mp3"
   },
-  "681b3e6c-7c35-41ae-9c67-9b18783d19b2": {
-    "asset": 1747811154481,
-    "meta": 1747811157245,
-    "relativePath": "Script/soundController.js"
-  },
   "9ad1b77f-675c-4c47-8ba4-f2d01cc2d7cb": {
     "asset": 1747815322607,
     "meta": 1747814408619,
@@ -793,5 +788,10 @@
     "asset": 1747908634979,
     "meta": 1747908638522,
     "relativePath": "Script/labelController.js"
+  },
+  "681b3e6c-7c35-41ae-9c67-9b18783d19b2": {
+    "asset": 1747909712288,
+    "meta": 1747909714707,
+    "relativePath": "Script/soundController.js"
   }
 }
