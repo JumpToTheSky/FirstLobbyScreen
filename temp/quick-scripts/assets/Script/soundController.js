@@ -54,18 +54,18 @@ cc.Class({
         this.updateVolumeLabel();
     },
     playBgm: function playBgm() {
-        this.current = cc.audioEngine.play(this.audioBgm, false, 1);
+        this.current = cc.audioEngine.play(this.audioBgm, this.loopBgm, 10);
     },
     playSoundClick: function playSoundClick() {
-        this.current = cc.audioEngine.play(this.audioClick, false, 1);
+        this.current = cc.audioEngine.play(this.audioClick, false, 10);
     },
     increaseBgmVolume: function increaseBgmVolume() {
         this.setBgmVolume(this.bgmVolume + this.volumeStep);
-        playSoundClick();
+        this.playSoundClick();
     },
     decreaseBgmVolume: function decreaseBgmVolume() {
         this.setBgmVolume(this.bgmVolume - this.volumeStep);
-        playSoundClick();
+        this.playSoundClick();
     },
     setBgmVolume: function setBgmVolume(volume) {
         this.bgmVolume = this.bgmVolume = Math.max(0, Math.min(10, volume));

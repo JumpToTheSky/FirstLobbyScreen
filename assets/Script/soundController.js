@@ -51,21 +51,21 @@ cc.Class({
     },
 
     playBgm() {
-        this.current = cc.audioEngine.play(this.audioBgm, false, 1);
+        this.current = cc.audioEngine.play(this.audioBgm, this.loopBgm, 10);
     },
 
     playSoundClick() {
-        this.current = cc.audioEngine.play(this.audioClick, false, 1);
+        this.current = cc.audioEngine.play(this.audioClick, false, 10);
 
     },
     increaseBgmVolume() {
         this.setBgmVolume(this.bgmVolume + this.volumeStep);
-        playSoundClick();
+        this.playSoundClick();
     },
 
     decreaseBgmVolume() {
         this.setBgmVolume(this.bgmVolume - this.volumeStep);
-        playSoundClick();
+        this.playSoundClick();
     },
 
     setBgmVolume(volume) {
