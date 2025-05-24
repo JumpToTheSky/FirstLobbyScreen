@@ -470,9 +470,9 @@
     "relativePath": "Scene"
   },
   "2d2f792f-a40c-49bb-a189-ed176a246e49": {
-    "asset": 1747823552920,
-    "meta": 1747823552993,
-    "relativePath": "Scene/FirstScene.fire"
+    "asset": 1747997407583,
+    "meta": 1747997407695,
+    "relativePath": "Scene/sceneLobby.fire"
   },
   "4734c20c-0db8-4eb2-92ea-e692f4d70934": {
     "asset": 1747809211605,
@@ -704,11 +704,6 @@
     "meta": 1747795107986,
     "relativePath": "Sprite/Middle/Title_Flag_01_Shadow_White_Bg.png"
   },
-  "7d9810a9-06e7-4d1d-8c61-4cfe306a65ca": {
-    "asset": 1747966837357,
-    "meta": 1747966837473,
-    "relativePath": "Scene/sceneRoom.fire"
-  },
   "4915af1c-84f3-4694-933e-cabc873cb67c": {
     "asset": 1747810811015,
     "meta": 1747810398231,
@@ -789,9 +784,109 @@
     "meta": 1747908638522,
     "relativePath": "Script/labelController.js"
   },
+  "7d9810a9-06e7-4d1d-8c61-4cfe306a65ca": {
+    "asset": 1747971486692,
+    "meta": 1747971580024,
+    "relativePath": "Scene/sceneRoom.fire"
+  },
+  "1bd85b47-646a-4904-a16e-b45efc5a2c85": {
+    "asset": 1747972443303,
+    "meta": 1747972443316,
+    "relativePath": "Script/Lobby"
+  },
+  "681de718-fa60-46f4-a9b9-4ac285c35c34": {
+    "asset": 1747972456184,
+    "meta": 1747972456186,
+    "relativePath": "Script/Popup"
+  },
+  "7d11db3e-41a9-4aea-9c80-77716d4728f7": {
+    "asset": 1747972496245,
+    "meta": 1747972496246,
+    "relativePath": "Script/Popup/Table"
+  },
+  "6cbe00b2-9b57-413d-a026-a31bf1b6dee6": {
+    "asset": 1747972623108,
+    "meta": 1747972632417,
+    "relativePath": "Script/Popup/Table/cellItem.js"
+  },
+  "6db7a357-a555-4f6e-a5c6-5c18b1177318": {
+    "asset": 1747983541985,
+    "meta": 1747983869713,
+    "relativePath": "Script/Popup/popupItem.js"
+  },
+  "9ca9b117-b248-42fd-97e0-76814c2a9d87": {
+    "asset": 1747984014673,
+    "meta": 1747986419980,
+    "relativePath": "Sprite/Frame/StageFrame_01_Single_Lock.png"
+  },
+  "c9855a9d-7623-4545-8a5e-7202be9b1070": {
+    "asset": 1747985661313,
+    "meta": 1747985661316,
+    "relativePath": "Script/Prefab"
+  },
+  "ccb843c6-4afe-4e00-a7c6-a37c2ffa5b5c": {
+    "asset": 1747995024681,
+    "meta": 1747995024718,
+    "relativePath": "Script/Prefab/cell.prefab"
+  },
+  "4b264943-27e7-4543-b5af-93d338e30f2a": {
+    "asset": 1747988418395,
+    "meta": 1747988418487,
+    "relativePath": "Sprite/Frame/Popup_01_ButtonIcon.png"
+  },
+  "a68a9c46-03eb-41c8-80d9-c4c934265918": {
+    "asset": 1747989241986,
+    "meta": 1747989380720,
+    "relativePath": "Sprite/Frame/Title_Flag_01_NoShadow_Blue.png"
+  },
+  "f411ae63-a8fd-4d02-8a4f-6f550e893fdb": {
+    "asset": 1747990502062,
+    "meta": 1747990585185,
+    "relativePath": "Sprite/Frame/CardFrame_01_BorderGray.png"
+  },
+  "df84e552-3356-4f46-9789-d14277dc485a": {
+    "asset": 1747991600924,
+    "meta": 1747991816276,
+    "relativePath": "Sprite/Frame/Button_Rectangle_05_Deco_White_DecoLeft.png"
+  },
+  "dcd0d57a-60c0-49db-85dd-7b5f4d2b33c4": {
+    "asset": 1747991604932,
+    "meta": 1747991604957,
+    "relativePath": "Sprite/Frame/Button_Rectangle_05_Deco_White_DecoRight.png"
+  },
+  "e9a202ed-b11b-46b2-90e2-f76dc58a603d": {
+    "asset": 1747992230436,
+    "meta": 1747992230513,
+    "relativePath": "Sprite/Frame/Button_Rectangle_01_Convex_White_Bg.png"
+  },
+  "0ac6a059-1b00-41e2-ae69-bf2a9ee865e4": {
+    "asset": 1747995403418,
+    "meta": 1747995751544,
+    "relativePath": "Script/Popup/popupRank.js"
+  },
+  "7db033fc-372a-4841-adc6-3fdedf162481": {
+    "asset": 1747995981052,
+    "meta": 1747996032124,
+    "relativePath": "Script/Lobby/lobbyController.js"
+  },
   "681b3e6c-7c35-41ae-9c67-9b18783d19b2": {
-    "asset": 1747969956705,
-    "meta": 1747970505067,
+    "asset": 1747997022220,
+    "meta": 1747997032237,
     "relativePath": "Script/soundController.js"
+  },
+  "8b32d7b3-91d3-49e6-a544-091dd002b3ed": {
+    "asset": 1747997273778,
+    "meta": 1747997283984,
+    "relativePath": "Script/Popup/popupController.js"
+  },
+  "a644f4c4-f601-4aa6-8219-0154bb97bcb5": {
+    "asset": 1747997251504,
+    "meta": 1747997283992,
+    "relativePath": "Script/Popup/popupSetting.js"
+  },
+  "90af997d-73a3-4a7f-92b4-7737ef1dcb4a": {
+    "asset": 1747997246600,
+    "meta": 1747997283994,
+    "relativePath": "Script/Popup/Table/tableController.js"
   }
 }

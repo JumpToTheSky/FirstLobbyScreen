@@ -31,11 +31,7 @@ cc.Class({
             default: true,
             tooltip: "Lặp lại nhạc nền khi kết thúc?"
         },
-        volumeDisplayLabel: {
-            default: null,
-            type: cc.Label,
-            tooltip: "Label để hiển thị giá trị âm lượng BGM"
-        },
+
         volumeStep: {
             default: 1,
             type: cc.Float,
@@ -51,33 +47,36 @@ cc.Class({
 
     onLoad: function onLoad() {
         this.playBgm();
-        this.updateVolumeLabel();
     },
     playBgm: function playBgm() {
-        this.current = cc.audioEngine.play(this.audioBgm, this.loopBgm, 10);
+        this.current = cc.audioEngine.play(this.audioBgm, true, 1);
     },
     playSoundClick: function playSoundClick() {
-        this.current = cc.audioEngine.play(this.audioClick, false, 10);
+        this.current = cc.audioEngine.play(this.audioClick, false, 1);
     },
     increaseBgmVolume: function increaseBgmVolume() {
         this.setBgmVolume(this.bgmVolume + this.volumeStep);
-        this.playSoundClick();
+        playSoundClick();
     },
     decreaseBgmVolume: function decreaseBgmVolume() {
         this.setBgmVolume(this.bgmVolume - this.volumeStep);
-        this.playSoundClick();
+        playSoundClick();
     },
-    setBgmVolume: function setBgmVolume(volume) {
-        this.bgmVolume = this.bgmVolume = Math.max(0, Math.min(10, volume));
-        cc.audioEngine.setVolume(this.current, this.bgmVolume);
-        this.updateVolumeLabel();
-    },
-    updateVolumeLabel: function updateVolumeLabel() {
-        if (this.volumeDisplayLabel) {
-            var volumePercent = Math.round(this.bgmVolume * 10);
-            this.volumeDisplayLabel.string = "\xC2m l\u01B0\u1EE3ng: " + volumePercent + "%";
-        }
-    },
+
+
+    // setBgmVolume(volume) {
+    //     this.bgmVolume = this.bgmVolume = Math.max(0, Math.min(10, volume));
+    //     cc.audioEngine.setVolume(this.current, this.bgmVolume);
+    //     this.updateVolumeLabel();
+    // },
+
+    // updateVolumeLabel() {
+    //     if (this.volumeDisplayLabel) {
+    //         let volumePercent = Math.round(this.bgmVolume * 10);
+    //         this.volumeDisplayLabel.string = `Âm lượng: ${volumePercent}%`;
+    //     }
+    // },
+
     onDestroy: function onDestroy() {}
 });
 
