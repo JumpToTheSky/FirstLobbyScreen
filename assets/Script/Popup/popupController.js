@@ -7,30 +7,44 @@ cc.Class({
             type: cc.Prefab,
             tooltip: "Prefab của popup item"
         },
+        scriptSetting: {
+            default: null,
+            type: cc.ScriptAsset,
+            tooltip: "Script của popup setting"
+        },
+        scriptRank: {
+            default: null,
+            type: cc.ScriptAsset,
+            tooltip: "Script của popup rank"
+        },
 
+    },
+    onLoad() {
+        this.popupSettingNode = cc.instantiate(this.popupItemPrefab);
+        this.popupSettingNode.name = "popupSetting";
+        this.scriptSetting = this.popupSettingNode.addComponent('popupSetting');
+        this.node.addChild(this.popupSettingNode);
+
+        this.popupRankNode = cc.instantiate(this.popupItemPrefab);
+        this.popupRankNode.name = "popupRank";
+        this.scriptRank = this.popupRankNode.addComponent('popupRank');
+        this.node.addChild(this.popupRankNode);
     },
     showSettingPopup() {
         cc.log("showSettingPopup");
-        this.popupSetting.show();
-        if (this.popupRank.node.active === true) {
-            this.popupRank.hide();
+        this.scriptSetting.show();
+        if (this.scriptRank.active === true) {
+            this.scriptRank.active = false;
         }                                  
     },
     showRankPopup() {
         cc.log("showSettingPopup");
-        this.popupRank.show();
-        if (this.popupSetting.node.active === true) {
-            this.popupSetting.hide();
+        this.scriptRank.show();
+        if (this.scriptSetting.active === true) {
+            this.scriptSetting.active = false;
         }                                 
     },
-    hideSettingPopup() {
-        cc.log("hideSettingPopup");
-        this.popupSetting.hide();                                     
-    },
-    hideRankPopup() {
-        cc.log("hideRankPopup");
-        this.popupRank.hide();                                     
-    },
+
 
 
 });

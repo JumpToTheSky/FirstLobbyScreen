@@ -789,11 +789,6 @@
     "meta": 1747997929000,
     "relativePath": "Script\\Popup"
   },
-  "6db7a357-a555-4f6e-a5c6-5c18b1177318": {
-    "asset": 1747997929000,
-    "meta": 1748099853635,
-    "relativePath": "Script\\Popup\\popupItem.js"
-  },
   "9ca9b117-b248-42fd-97e0-76814c2a9d87": {
     "asset": 1747997929000,
     "meta": 1748099854002,
@@ -839,14 +834,9 @@
     "meta": 1748099853702,
     "relativePath": "Script\\soundController.js"
   },
-  "a644f4c4-f601-4aa6-8219-0154bb97bcb5": {
-    "asset": 1747997929000,
-    "meta": 1748099853647,
-    "relativePath": "Script\\Popup\\popupSetting.js"
-  },
   "2eee5576-995a-48e7-94a1-4fe957591a7e": {
-    "asset": 1748105531157,
-    "meta": 1748105531199,
+    "asset": 1748109416111,
+    "meta": 1748109416147,
     "relativePath": "Scene\\sceneLobby.fire"
   },
   "06229fcc-a061-4941-be84-2a29f814b817": {
@@ -864,14 +854,9 @@
     "meta": 1748104407639,
     "relativePath": "Resource"
   },
-  "0ac6a059-1b00-41e2-ae69-bf2a9ee865e4": {
-    "asset": 1748105407087,
-    "meta": 1748105424823,
-    "relativePath": "Script\\Popup\\popupRank.js"
-  },
   "ac05f7b1-6084-479e-a27b-5da819614d71": {
-    "asset": 1748106856727,
-    "meta": 1748106856765,
+    "asset": 1748109330822,
+    "meta": 1748109330852,
     "relativePath": "Script\\Prefab\\popupItem.prefab"
   },
   "7db033fc-372a-4841-adc6-3fdedf162481": {
@@ -879,9 +864,24 @@
     "meta": 1748107072021,
     "relativePath": "Script\\Lobby\\lobbyController.js"
   },
+  "6db7a357-a555-4f6e-a5c6-5c18b1177318": {
+    "asset": 1748107607585,
+    "meta": 1748107705680,
+    "relativePath": "Script\\Popup\\popupItem.js"
+  },
+  "0ac6a059-1b00-41e2-ae69-bf2a9ee865e4": {
+    "asset": 1748110268408,
+    "meta": 1748110327242,
+    "relativePath": "Script\\Popup\\popupRank.js"
+  },
+  "a644f4c4-f601-4aa6-8219-0154bb97bcb5": {
+    "asset": 1748110318568,
+    "meta": 1748110327242,
+    "relativePath": "Script\\Popup\\popupSetting.js"
+  },
   "8b32d7b3-91d3-49e6-a544-091dd002b3ed": {
-    "asset": 1748107330005,
-    "meta": 1748107330684,
+    "asset": 1748111413460,
+    "meta": 1748111415352,
     "relativePath": "Script\\Popup\\popupController.js"
   }
 }
