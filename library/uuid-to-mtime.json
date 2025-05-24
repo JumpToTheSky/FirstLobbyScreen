@@ -864,11 +864,6 @@
     "meta": 1748107072021,
     "relativePath": "Script\\Lobby\\lobbyController.js"
   },
-  "6db7a357-a555-4f6e-a5c6-5c18b1177318": {
-    "asset": 1748107607585,
-    "meta": 1748107705680,
-    "relativePath": "Script\\Popup\\popupItem.js"
-  },
   "0ac6a059-1b00-41e2-ae69-bf2a9ee865e4": {
     "asset": 1748110268408,
     "meta": 1748110327242,
@@ -879,9 +874,14 @@
     "meta": 1748110327242,
     "relativePath": "Script\\Popup\\popupSetting.js"
   },
+  "6db7a357-a555-4f6e-a5c6-5c18b1177318": {
+    "asset": 1748113263164,
+    "meta": 1748113284746,
+    "relativePath": "Script\\Popup\\popupItem.js"
+  },
   "8b32d7b3-91d3-49e6-a544-091dd002b3ed": {
-    "asset": 1748111413460,
-    "meta": 1748111415352,
+    "asset": 1748113387716,
+    "meta": 1748113388449,
     "relativePath": "Script\\Popup\\popupController.js"
   }
 }

@@ -22,26 +22,28 @@ cc.Class({
     onLoad() {
         this.popupSettingNode = cc.instantiate(this.popupItemPrefab);
         this.popupSettingNode.name = "popupSetting";
-        this.scriptSetting = this.popupSettingNode.addComponent('popupSetting');
         this.node.addChild(this.popupSettingNode);
+        this.scriptSetting = this.popupSettingNode.addComponent('popupSetting');
+        this.scriptSetting.hide();
 
         this.popupRankNode = cc.instantiate(this.popupItemPrefab);
         this.popupRankNode.name = "popupRank";
-        this.scriptRank = this.popupRankNode.addComponent('popupRank');
         this.node.addChild(this.popupRankNode);
+        this.scriptRank = this.popupRankNode.addComponent('popupRank');
+        this.scriptRank.hide();
     },
     showSettingPopup() {
         cc.log("showSettingPopup");
         this.scriptSetting.show();
-        if (this.scriptRank.active === true) {
-            this.scriptRank.active = false;
+        if (this.scriptRank.node.active === true) {
+            this.scriptRank.hide();
         }                                  
     },
     showRankPopup() {
-        cc.log("showSettingPopup");
+        cc.log("showRankPopup");
         this.scriptRank.show();
-        if (this.scriptSetting.active === true) {
-            this.scriptSetting.active = false;
+        if (this.scriptSetting.node.active === true) {
+            this.scriptSetting.hide();
         }                                 
     },
 
