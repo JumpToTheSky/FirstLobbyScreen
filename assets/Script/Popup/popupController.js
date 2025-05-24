@@ -2,8 +2,11 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
-        popupSetting: require('popupItem'),
-        popupRank: require('popupItem'),
+        popupItemPrefab: {
+            default: null,
+            type: cc.Prefab,
+            tooltip: "Prefab của popup item"
+        },
 
     },
     showSettingPopup() {

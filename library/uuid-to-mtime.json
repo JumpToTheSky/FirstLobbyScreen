@@ -789,16 +789,6 @@
     "meta": 1747997929000,
     "relativePath": "Script\\Popup"
   },
-  "7d11db3e-41a9-4aea-9c80-77716d4728f7": {
-    "asset": 1748099701538,
-    "meta": 1747997929000,
-    "relativePath": "Script\\Popup\\Table"
-  },
-  "6cbe00b2-9b57-413d-a026-a31bf1b6dee6": {
-    "asset": 1747997929000,
-    "meta": 1748099853673,
-    "relativePath": "Script\\Popup\\Table\\cellItem.js"
-  },
   "6db7a357-a555-4f6e-a5c6-5c18b1177318": {
     "asset": 1747997929000,
     "meta": 1748099853635,
@@ -813,11 +803,6 @@
     "asset": 1748099701547,
     "meta": 1747997929000,
     "relativePath": "Script\\Prefab"
-  },
-  "ccb843c6-4afe-4e00-a7c6-a37c2ffa5b5c": {
-    "asset": 1747997929000,
-    "meta": 1748099853705,
-    "relativePath": "Script\\Prefab\\cell.prefab"
   },
   "4b264943-27e7-4543-b5af-93d338e30f2a": {
     "asset": 1747997929000,
@@ -849,39 +834,54 @@
     "meta": 1748099853951,
     "relativePath": "Sprite\\Frame\\Button_Rectangle_01_Convex_White_Bg.png"
   },
-  "0ac6a059-1b00-41e2-ae69-bf2a9ee865e4": {
-    "asset": 1747997929000,
-    "meta": 1748099853645,
-    "relativePath": "Script\\Popup\\popupRank.js"
-  },
-  "7db033fc-372a-4841-adc6-3fdedf162481": {
-    "asset": 1747997929000,
-    "meta": 1748099853585,
-    "relativePath": "Script\\Lobby\\lobbyController.js"
-  },
   "681b3e6c-7c35-41ae-9c67-9b18783d19b2": {
     "asset": 1747997929000,
     "meta": 1748099853702,
     "relativePath": "Script\\soundController.js"
-  },
-  "8b32d7b3-91d3-49e6-a544-091dd002b3ed": {
-    "asset": 1747997929000,
-    "meta": 1748099853605,
-    "relativePath": "Script\\Popup\\popupController.js"
   },
   "a644f4c4-f601-4aa6-8219-0154bb97bcb5": {
     "asset": 1747997929000,
     "meta": 1748099853647,
     "relativePath": "Script\\Popup\\popupSetting.js"
   },
-  "90af997d-73a3-4a7f-92b4-7737ef1dcb4a": {
-    "asset": 1747997929000,
-    "meta": 1748099853674,
-    "relativePath": "Script\\Popup\\Table\\tableController.js"
-  },
   "2eee5576-995a-48e7-94a1-4fe957591a7e": {
-    "asset": 1747997929000,
-    "meta": 1748099853136,
+    "asset": 1748105531157,
+    "meta": 1748105531199,
     "relativePath": "Scene\\sceneLobby.fire"
+  },
+  "06229fcc-a061-4941-be84-2a29f814b817": {
+    "asset": 1748104399432,
+    "meta": 1748103451015,
+    "relativePath": "Resource\\Data"
+  },
+  "e3c19a90-9471-4ab3-b1b0-ffb4c3eb99ef": {
+    "asset": 1748103805446,
+    "meta": 1748104399555,
+    "relativePath": "Resource\\Data\\fakeData.js"
+  },
+  "377c0006-a29c-4d97-b6b2-fe018d6ecd01": {
+    "asset": 1748104407638,
+    "meta": 1748104407639,
+    "relativePath": "Resource"
+  },
+  "0ac6a059-1b00-41e2-ae69-bf2a9ee865e4": {
+    "asset": 1748105407087,
+    "meta": 1748105424823,
+    "relativePath": "Script\\Popup\\popupRank.js"
+  },
+  "ac05f7b1-6084-479e-a27b-5da819614d71": {
+    "asset": 1748106856727,
+    "meta": 1748106856765,
+    "relativePath": "Script\\Prefab\\popupItem.prefab"
+  },
+  "7db033fc-372a-4841-adc6-3fdedf162481": {
+    "asset": 1748107041039,
+    "meta": 1748107072021,
+    "relativePath": "Script\\Lobby\\lobbyController.js"
+  },
+  "8b32d7b3-91d3-49e6-a544-091dd002b3ed": {
+    "asset": 1748107330005,
+    "meta": 1748107330684,
+    "relativePath": "Script\\Popup\\popupController.js"
   }
 }
