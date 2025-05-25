@@ -9,6 +9,7 @@ cc.Class({
         this.node.name = "popupRank";
         let popupItemScript = this.node.getComponent('popupItem');
         let layoutNodeInstance = cc.instantiate(popupItemScript.layout);
+        let layoutController = layoutNodeInstance.getComponent('layoutController');
         this.node.addChild(layoutNodeInstance);
         this.customizePopup();
     },

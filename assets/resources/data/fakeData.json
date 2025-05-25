@@ -1,0 +1,92 @@
+[
+  {
+    "name": "DragonSlayer",
+    "level": 42,
+    "power": 8750,
+    "country": "US"
+  },
+  {
+    "name": "NinjaWarrior",
+    "level": 38,
+    "power": 7200,
+    "country": "JP"
+  },
+  {
+    "name": "IronFist",
+    "level": 45,
+    "power": 9100,
+    "country": "KR"
+  },
+  {
+    "name": "ShadowHunter",
+    "level": 36,
+    "power": 6800,
+    "country": "CN"
+  },
+  {
+    "name": "FirePhoenix",
+    "level": 50,
+    "power": 11500,
+    "country": "VN"
+  },
+  {
+    "name": "StormRider",
+    "level": 41,
+    "power": 8300,
+    "country": "TH"
+  },
+  {
+    "name": "SilentAssassin",
+    "level": 39,
+    "power": 7600,
+    "country": "ID"
+  },
+  {
+    "name": "DarkKnight",
+    "level": 47,
+    "power": 9800,
+    "country": "DE"
+  },
+  {
+    "name": "LightningBolt",
+    "level": 33,
+    "power": 5900,
+    "country": "FR"
+  },
+  {
+    "name": "IceQueen",
+    "level": 44,
+    "power": 8900,
+    "country": "RU"
+  },
+  {
+    "name": "GoldenWarrior",
+    "level": 49,
+    "power": 10200,
+    "country": "UK"
+  },
+  {
+    "name": "TigerClaw",
+    "level": 35,
+    "power": 6400,
+    "country": "SG"
+  },
+  {
+    "name": "MysticWizard",
+    "level": 46,
+    "power": 9500,
+    "country": "MY"
+  },
+  {
+    "name": "SteelBullet",
+    "level": 37,
+    "power": 7000,
+    "country": "PH"
+  },
+  {
+    "name": "BlackMamba",
+    "level": 40,
+    "power": 8000,
+    "country": "BR"
+  }
+]

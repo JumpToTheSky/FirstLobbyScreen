@@ -37,13 +37,6 @@ cc.Class({
         }
     },
 
-    // start() {
-
-    // },
-
-    onLoad() {
-        this.playBgm();
-    },
 
     playBgm() {
         this.current = cc.audioEngine.play(this.audioBgm, true, 1);
