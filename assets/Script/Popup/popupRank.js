@@ -7,97 +7,87 @@ cc.Class({
             type: cc.Integer,
             tooltip: "Số lượng người chơi hiển thị trên mỗi trang."
         },
-    },
-    nextButtonComponent: null,
-    prevButtonComponent: null,
-    pageInfoLabelComponent: null,
-    paginationControlNode: null,
+        nextButton: null,
+        prevButton: null,
+        pageInfoLabel: null,
+        paginationControlNode: null,
 
-    allPlayersData: [],
-    currentPage: 0,
-    totalPages: 0,
-    currentLayoutNode: null,
-    currentLayoutController: null,
-    isPaginationUiInitialized: false,
+        allPlayersData: [],
+        currentPage: 0,
+        totalPages: 0,
+        currentLayoutNode: null,
+        currentLayoutController: null,
+        isPaginationUiInitialized: false,
+    },
+
     onLoad() {
         console.log("onLoad popup rank");
         this.node.name = "popupRank";
-
-        if (this.nextButton) this.nextButton.node.active = false;
-        if (this.prevButton) this.prevButton.node.active = false;
-        if (this.pageInfoLabel) this.pageInfoLabel.node.active = false;
-
-        this.loadPlayerData();
         this.customizePopup();
     },
-    hide() {
-        this.super();
-        console.log("hide popup rank");
+    show() {
+        this._super();
+        console.log("show popup rank");
+        if (this.isPaginationUiInitialized) {
+            if (!this.currentLayoutNode && this.allPlayersData.length > 0) {
+                this.createOrReuseLayoutAndDisplayPage(this._currentPage);
+            } else if (this.allPlayersData.length === 0) {
+                this.loadPlayerData();
+            }
+        }
     },
-    initializePaginationUi(paginationPrefab, parentNodeForControls) {
-        if (this._isPaginationUiInitialized) {
-            cc.log(this.node.name + " - Pagination UI already initialized.");
-            return;
+    
+    hide() {
+        this._super();
+        cc.log(this.node.name + " - hide popup rank.");
+        if (this._currentLayoutNode) {
+            this._currentLayoutNode.destroy();
+            this._currentLayoutNode = null;
+            this._currentLayoutController = null;
         }
-        if (!paginationPrefab) {
-            cc.warn(this.node.name + " - initializePaginationUi: paginationPrefab is null.");
-            return;
+    },
+
+    onDestroy() {
+        if (this._prevButtonComponent && this._prevButtonComponent.node) {
+            this._prevButtonComponent.node.off('click', this.onPrevPage, this);
         }
-        if (!parentNodeForControls) {
-            cc.warn(this.node.name + " - initializePaginationUi: parentNodeForControls is null.");
-            return;
+        if (this._nextButtonComponent && this._nextButtonComponent.node) {
+            this._nextButtonComponent.node.off('click', this.onNextPage, this);
         }
+        cc.log(this.node.name + " - popupRank onDestroy.");
+    },
+    initializePaginationUi(paginationPrefab, parentNodeForControl) {
 
-        this._paginationControlsNode = cc.instantiate(paginationPrefab);
-        if (!this._paginationControlsNode) {
-            cc.error(this.node.name + " - Failed to instantiate paginationControlsPrefab.");
-            return;
-        }
-
-        // Thêm node UI phân trang vào node cha được cung cấp
-        // (parentNodeForControls có thể là node gốc của popupRank,
-        // hoặc một node con chuyên dụng bên trong popupRank nếu bạn muốn có cấu trúc phức tạp hơn)
-        parentNodeForControls.addChild(this._paginationControlsNode);
-
-        // Tùy chỉnh vị trí cho _paginationControlsNode nếu cần.
-        // Ví dụ: đặt ở dưới cùng của parentNodeForControls.
-        // Giả sử anchor của parentNodeForControls là (0.5, 0.5) và của _paginationControlsNode cũng vậy.
-        // let parentHeight = parentNodeForControls.height;
-        // let controlsHeight = this._paginationControlsNode.height;
-        // this._paginationControlsNode.setPosition(0, -parentHeight / 2 + controlsHeight / 2 + 20); // 20 là khoảng cách từ đáy
-
-        // Lấy tham chiếu đến các component từ các node con của _paginationControlsNode
-        // Đảm bảo tên "prevButtonNode", "nextButtonNode", "pageInfoLabelNode" khớp với tên bạn đặt trong prefab
-        this._prevButtonComponent = this._paginationControlsNode.getChildByName("prevButtonNode")?.getComponent(cc.Button);
-        this._nextButtonComponent = this._paginationControlsNode.getChildByName("nextButtonNode")?.getComponent(cc.Button);
-        this._pageInfoLabelComponent = this._paginationControlsNode.getChildByName("pageInfoLabelNode")?.getComponent(cc.Label);
-
-        if (!this._prevButtonComponent || !this._nextButtonComponent || !this._pageInfoLabelComponent) {
-            cc.error(this.node.name + " - Could not find all UI elements (prevButtonNode, nextButtonNode, pageInfoLabelNode) within the instantiated pagination prefab. Check node names in paginationControls.prefab.");
-            this._paginationControlsNode.destroy(); // Dọn dẹp nếu lỗi
-            this._paginationControlsNode = null;
+        if (this.isPaginationUiInitialized) {
             return;
         }
 
-        // Gắn sự kiện click cho các nút
-        this._prevButtonComponent.node.on('click', this.onPrevPage, this);
-        this._nextButtonComponent.node.on('click', this.onNextPage, this);
+        this.paginationControlNode = cc.instantiate(paginationPrefab);
+        parentNodeForControl.addChild(this.paginationControlNode);
+        this.paginationControlNode.name = "paginationControl";
+        this.paginationControlNode.setPosition(0, -260); 
 
-        // Ẩn các nút và label ban đầu, setupPaginationAndDisplayFirstPage sẽ xử lý việc hiển thị chúng
-        this._prevButtonComponent.node.active = false;
-        this._nextButtonComponent.node.active = false;
-        this._pageInfoLabelComponent.node.active = false;
+        this.prevButton = this.paginationControlNode.getChildByName("layout").getChildByName("buttonPrevious").getComponent(cc.Button);
+        this.nextButton = this.paginationControlNode.getChildByName("layout").getChildByName("buttonNext").getComponent(cc.Button);
+        this.pageInfoLabel = this.paginationControlNode.getChildByName("layout").getChildByName("labelPagination").getComponent(cc.Label);
 
-        this._isPaginationUiInitialized = true;
+        this.prevButton.node.on('click', this.onPrevPage, this);
+        this.nextButton.node.on('click', this.onNextPage, this);
+
+        this.prevButton.node.active = false;
+        this.nextButton.node.active = false;
+        this.pageInfoLabel.node.active = false;
+
+        this.isPaginationUiInitialized = true;
         cc.log(this.node.name + " - Pagination UI initialized successfully.");
-
-        // Nếu dữ liệu đã được tải trong khi UI chưa sẵn sàng, giờ hãy setup phân trang
-        if (this._allPlayersData.length > 0) {
+        
+        if (this.allPlayersData.length > 0) {
             this.setupPaginationAndDisplayFirstPage();
         }
     },
     customizePopup() {
         let background = this.node.getChildByName("background");
+        background.width = 550;
 
         if (!background) {
             console.error("Node 'background' not found in popupRank");
@@ -137,10 +127,14 @@ cc.Class({
             this.currentPage = 0;
         }
 
-        this.updatePaginationUI();
-        if (this.pageInfoLabel) this.pageInfoLabel.node.active = (this.totalPages > 0 || this.allPlayersData.length === 0);
-        if (this.nextButton) this.nextButton.node.active = (this.totalPages > 1);
-        if (this.prevButton) this.prevButton.node.active = (this.totalPages > 1);
+        this.updatePaginationUi();
+       
+        if (this.nextButton) {
+            this.nextButton.node.active = (this.totalPages > 1);
+        }
+        if (this.prevButton) {
+            this.prevButton.node.active = (this.totalPages > 1);
+        }
 
         if (this.nextButton) {
             this.nextButton.node.off('click', this.onNextPage, this);
@@ -180,29 +174,38 @@ cc.Class({
         const endIndex = startIndex + this.itemsPerPage;
         const pageData = this.allPlayersData.slice(startIndex, endIndex);
 
-        this.currentLayoutController.updateCellsData(pageData, startIndex);
+        this.currentLayoutController.updateCellData(pageData, startIndex);
 
-        this.updatePaginationUI();
+        this.updatePaginationUi();
     },
-    updatePaginationUI() {
+    updatePaginationUi() {
+        if (!this.isPaginationUiInitialized) return;
         if (this.pageInfoLabel) {
             if (this.totalPages > 0) {
                 this.pageInfoLabel.string = `${this.currentPage + 1} / ${this.totalPages}`;
             } else {
                 this.pageInfoLabel.string = (this.allPlayersData.length > 0) ? `1 / 1` : "No data available";
             }
+            this.pageInfoLabel.node.active = true;
         }
-        if (this.nextButton) this.nextButton.interactable = (this.currentPage < this.totalPages - 1);
-        if (this.prevButton) this.prevButton.interactable = (this.currentPage > 0);
+
+        if (this.nextButton) {
+            this.nextButton.interactable = (this.currentPage < this.totalPages - 1);
+            this.nextButton.node.active = (this.totalPages > 1);
+        }
+        if (this.prevButton) {
+            this.prevButton.interactable = (this.currentPage > 0);
+            this.prevButton.node.active = (this.totalPages > 1);
+        }
     },
     onNextPage() {
-        if (this._currentPage < this._totalPages - 1) {
-            this.createOrReuseLayoutAndDisplayPage(this._currentPage + 1);
+        if (this.currentPage < this.totalPages - 1) {
+            this.createOrReuseLayoutAndDisplayPage(this.currentPage + 1);
         }
     },
     onPrevPage() {
-        if (this._currentPage > 0) {
-            this.createOrReuseLayoutAndDisplayPage(this._currentPage - 1);
+        if (this.currentPage > 0) {
+            this.createOrReuseLayoutAndDisplayPage(this.currentPage - 1);
         }
     },
 });

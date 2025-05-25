@@ -19,7 +19,7 @@ cc.Class({
         this.listCell = [];
         this.listCellScript = [];
         console.log("onLoad layoutController");
-        for (let i = 0; i < maxCellsToCreate; i++) {
+        for (let i = 0; i < this.maxCellsToCreate; i++) {
             let cell = cc.instantiate(this.cellItemPrefab);
             let cellScript = cell.getComponent('cellItem');
 
@@ -41,7 +41,7 @@ cc.Class({
                 const playerData = currentPageData[i];
                 const playerRank = startIndex + i;
 
-                cellScript.updateData(playerData, currentRank);
+                cellScript.updateData(playerData, playerRank);
             } else {
                 if (cellScript && cellScript.node) {
                     cellScript.node.active = false;

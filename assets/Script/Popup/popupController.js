@@ -25,8 +25,7 @@ cc.Class({
         this.popupRankNode = cc.instantiate(this.popupItemPrefab);
         this.node.addChild(this.popupRankNode);
         this.scriptRank = this.popupRankNode.addComponent('popupRank');
-        paginationControl = cc.instantiate(this.paginationControlPrefab);
-        this.scriptRank.initializePaginationUi(paginationControl, popupRankNode);
+        this.scriptRank.initializePaginationUi(this.paginationControlPrefab, this.popupRankNode);
         this.scriptRank.hide();
     },
     showSettingPopup() {
