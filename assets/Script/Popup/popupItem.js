@@ -8,6 +8,9 @@ cc.Class({
             tooltip: "Layout của popup item"
         },
     },
+    onLoad() {
+        this.node.getChildByName("settingLayout").active = false;
+    },
     show() {
         this.node.active = true;
     },

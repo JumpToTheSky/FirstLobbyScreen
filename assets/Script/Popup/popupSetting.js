@@ -5,8 +5,10 @@ cc.Class({
 
     },
     onLoad() {
+        this._super();
         console.log("onLoad popup setting");
         this.node.name = "popupSetting";
+        this.node.getChildByName("settingLayout").active = true;
         this.customizePopup();
     },
     hide() {
@@ -46,5 +48,5 @@ cc.Class({
             }
         }
     }
-    
+
 });

@@ -21,6 +21,7 @@ cc.Class({
     },
 
     onLoad() {
+        this._super();
         console.log("onLoad popup rank");
         this.node.name = "popupRank";
         this.customizePopup();
