@@ -37,25 +37,9 @@ cc.Class({
             }
         }
     },
-    
     hide() {
         this._super();
-        cc.log(this.node.name + " - hide popup rank.");
-        if (this._currentLayoutNode) {
-            this._currentLayoutNode.destroy();
-            this._currentLayoutNode = null;
-            this._currentLayoutController = null;
-        }
-    },
-
-    onDestroy() {
-        if (this._prevButtonComponent && this._prevButtonComponent.node) {
-            this._prevButtonComponent.node.off('click', this.onPrevPage, this);
-        }
-        if (this._nextButtonComponent && this._nextButtonComponent.node) {
-            this._nextButtonComponent.node.off('click', this.onNextPage, this);
-        }
-        cc.log(this.node.name + " - popupRank onDestroy.");
+        console.log("hide popup rank");
     },
     initializePaginationUi(paginationPrefab, parentNodeForControl) {
 

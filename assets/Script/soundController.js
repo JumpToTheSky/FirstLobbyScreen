@@ -13,46 +13,52 @@ cc.Class({
             type: cc.AudioClip
         },
         bgmVolume: {
-            default: 10, 
+            default: 1,
             type: cc.Float,
-            range: [0, 10, 1], 
+            range: [0.0, 1, 0.1],
             slide: true,
         },
         loopBgm: {
-            default: true, 
+            default: true,
         },
-        
+
         volumeStep: {
             default: 1,
             type: cc.Float,
-            min: 0.5, 
-            max: 1,  
+            min: 0.1,
+            max: 0.2,
+        },
+        clickVolume: {
+            default: 1,
+            type: cc.Float,
+            range: [0.0, 1, 0.1],
+            slide: true,
+        },
+    },
+    currentBgm: null,
+    currentClick: null,
+    onLoad() {
+        if (!this.currentBgm) {
+            this.playBgm();
+        } else {
+            this.setVolume(this.currentBgm, this.bgmVolume);
         }
     },
-
-
     playBgm() {
-        this.current = cc.audioEngine.play(this.audioBgm, true, 1);
+        this.currentBgm = cc.audioEngine.play(this.audioBgm, true, this.bgmVolume);
     },
-
     playSoundClick() {
-        this.current = cc.audioEngine.play(this.audioClick, false, 1);
-
+        this.currentClick = cc.audioEngine.play(this.audioClick, false, this.clickVolume);
     },
     increaseBgmVolume() {
-        this.setBgmVolume(this.bgmVolume + this.volumeStep);
-        playSoundClick();
+        this.setVolume(this.bgmVolume + this.volumeStep);
     },
 
     decreaseBgmVolume() {
-        this.setBgmVolume(this.bgmVolume - this.volumeStep);
-        playSoundClick();
+        this.setVolume(this.bgmVolume - this.volumeStep);
     },
-    stopBgm() {
-        if (this.current !== null) {
-            cc.audioEngine.stop(this.current);
-            this.current = null;
-        }
-    }
+    setVolume(sound,volume) {
+        cc.audioEngine.setVolume(sound, volume);
+    },
 
 });
