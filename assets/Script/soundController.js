@@ -4,10 +4,6 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
-        // audioSource: {
-        //     type: cc.AudioSource,
-        //     default: null
-        // },
         audioClick: {
             default: null,
             type: cc.AudioClip
@@ -52,8 +48,11 @@ cc.Class({
         this.setBgmVolume(this.bgmVolume - this.volumeStep);
         playSoundClick();
     },
-
-    onDestroy() {
-    },
+    stopBgm() {
+        if (this.current !== null) {
+            cc.audioEngine.stop(this.current);
+            this.current = null;
+        }
+    }
 
 });

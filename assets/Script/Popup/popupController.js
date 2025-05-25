@@ -9,7 +9,8 @@ cc.Class({
         paginationControlPrefab: {
             default: null,
             type: cc.Prefab,
-        }
+        },
+        soundController: require('soundController'),
     },
 
     scriptRank: null,
