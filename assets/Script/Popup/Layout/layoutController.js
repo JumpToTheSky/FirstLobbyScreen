@@ -6,23 +6,48 @@ cc.Class({
         cellItemPrefab: {
             default: null,
             type: cc.Prefab,
-            tooltip: "Prefab của cell item trong popup rank"
         },
         listCell: {
             default: [],
             type: [cc.Node],
-            tooltip: "Danh sách các cell item trong popup rank"
-        }
+        },
+
+        listCellScript: [], 
+        maxCellsToCreate: 10
     },
     onLoad() {
         this.listCell = [];
+        this.listCellScript = [];
         console.log("onLoad layoutController");
-        for (let i = 0; i < 10; i++) {
+        for (let i = 0; i < maxCellsToCreate; i++) {
             let cell = cc.instantiate(this.cellItemPrefab);
+            let cellScript = cell.getComponent('cellItem');
+
+            cell.active = false;
+            cell.name = "cellItem" + i;
+
             this.node.addChild(cell);
-            // cell.active = false;
+            this.listCellScript.push(cellScript);
             this.listCell.push(cell);
         }
     },
+    updateCellData(currentPageData, startIndex = 0) {
+        if (!currentPageData) {
+            currentPageData = [];
+        }
+        for (let i = 0; i < this.listCellScript.length; i++) {
+            const cellScript = this.listCellScript[i];
+            if (i < currentPageData.length) {
+                const playerData = currentPageData[i];
+                const playerRank = startIndex + i;
+
+                cellScript.updateData(playerData, currentRank);
+            } else {
+                if (cellScript && cellScript.node) {
+                    cellScript.node.active = false;
+                }
+            }
+        }
+    }
 
 });

@@ -1,41 +1,28 @@
-// Learn cc.Class:
-//  - [Chinese] https://docs.cocos.com/creator/manual/zh/scripting/class.html
-//  - [English] http://docs.cocos2d-x.org/creator/manual/en/scripting/class.html
-// Learn Attribute:
-//  - [Chinese] https://docs.cocos.com/creator/manual/zh/scripting/reference/attributes.html
-//  - [English] http://docs.cocos2d-x.org/creator/manual/en/scripting/reference/attributes.html
-// Learn life-cycle callbacks:
-//  - [Chinese] https://docs.cocos.com/creator/manual/zh/scripting/life-cycle-callbacks.html
-//  - [English] https://www.cocos2d-x.org/docs/creator/manual/en/scripting/life-cycle-callbacks.html
-
 cc.Class({
     extends: cc.Component,
 
     properties: {
-        // foo: {
-        //     // ATTRIBUTES:
-        //     default: null,        // The default value will be used only when the component attaching
-        //                           // to a node for the first time
-        //     type: cc.SpriteFrame, // optional, default is typeof default
-        //     serializable: true,   // optional, default is true
-        // },
-        // bar: {
-        //     get () {
-        //         return this._bar;
-        //     },
-        //     set (value) {
-        //         this._bar = value;
-        //     }
-        // },
+        //rankLabel: cc.Label,
+        nameLabel: cc.Label,
+        levelLabel: cc.Label,
+        powerLabel: cc.Label,
+        // countrySprite: cc.Sprite,
+    },
+    updateData(playerData, rank) {
+        if (this.rankLabel) {
+            this.rankLabel.string = (rank + 1).toString() + ".";
+        }
+        if (this.nameLabel) {
+            this.nameLabel.string = playerData.name || "N/A";
+        }
+        if (this.levelLabel) {
+            this.levelLabel.string = "Lv. " + (playerData.level || "N/A");
+        }
+        if (this.powerLabel) {
+            this.powerLabel.string = "LC: " + (playerData.power || "0").toLocaleString();
+        }
+
+        this.node.active = true; 
     },
 
-    // LIFE-CYCLE CALLBACKS:
-
-    // onLoad () {},
-
-    start () {
-
-    },
-
-    // update (dt) {},
 });
