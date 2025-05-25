@@ -5,12 +5,10 @@ cc.Class({
         popupItemPrefab: {
             default: null,
             type: cc.Prefab,
-            tooltip: "Prefab của popup item"
         },
-        paginationControlsPrefab: {
+        paginationControlPrefab: {
             default: null,
             type: cc.Prefab,
-            tooltip: "Prefab chứa các nút Next, Prev và PageInfo Label"
         }
     },
 
@@ -27,6 +25,8 @@ cc.Class({
         this.popupRankNode = cc.instantiate(this.popupItemPrefab);
         this.node.addChild(this.popupRankNode);
         this.scriptRank = this.popupRankNode.addComponent('popupRank');
+        paginationControl = cc.instantiate(this.paginationControlPrefab);
+        this.scriptRank.initializePaginationUi(paginationControl, popupRankNode);
         this.scriptRank.hide();
     },
     showSettingPopup() {
