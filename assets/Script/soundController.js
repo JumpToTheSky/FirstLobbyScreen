@@ -4,10 +4,6 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
-        // audioSource: {
-        //     type: cc.AudioSource,
-        //     default: null
-        // },
         audioClick: {
             default: null,
             type: cc.AudioClip
@@ -17,71 +13,52 @@ cc.Class({
             type: cc.AudioClip
         },
         bgmVolume: {
-            default: 10, 
+            default: 1,
             type: cc.Float,
-            range: [0, 10, 1], 
+            range: [0.0, 1, 0.1],
             slide: true,
-            tooltip: "Âm lượng ban đầu của nhạc nền"
         },
         loopBgm: {
-            default: true, 
-            tooltip: "Lặp lại nhạc nền khi kết thúc?"
+            default: true,
         },
-        volumeDisplayLabel: {
-            default: null,
-            type: cc.Label,
-            tooltip: "Label để hiển thị giá trị âm lượng BGM"
-        },
+
         volumeStep: {
             default: 1,
             type: cc.Float,
-            min: 0.5, // Bước nhỏ nhất
-            max: 1,  // Bước lớn nhất
-            tooltip: "Lượng âm lượng thay đổi mỗi lần nhấn nút"
+            min: 0.1,
+            max: 0.2,
+        },
+        clickVolume: {
+            default: 1,
+            type: cc.Float,
+            range: [0.0, 1, 0.1],
+            slide: true,
+        },
+    },
+    currentBgm: null,
+    currentClick: null,
+    onLoad() {
+        if (!this.currentBgm) {
+            this.playBgm();
+        } else {
+            this.setVolume(this.currentBgm, this.bgmVolume);
         }
     },
-
-    // start() {
-
-    // },
-
-    onLoad() {
-        this.playBgm();
-        this.updateVolumeLabel();
-    },
-
     playBgm() {
-        this.current = cc.audioEngine.play(this.audioBgm, this.loopBgm, 10);
+        this.currentBgm = cc.audioEngine.play(this.audioBgm, true, this.bgmVolume);
     },
-
     playSoundClick() {
-        this.current = cc.audioEngine.play(this.audioClick, false, 10);
-
+        this.currentClick = cc.audioEngine.play(this.audioClick, false, this.clickVolume);
     },
     increaseBgmVolume() {
-        this.setBgmVolume(this.bgmVolume + this.volumeStep);
-        this.playSoundClick();
+        this.setVolume(this.bgmVolume + this.volumeStep);
     },
 
     decreaseBgmVolume() {
-        this.setBgmVolume(this.bgmVolume - this.volumeStep);
-        this.playSoundClick();
+        this.setVolume(this.bgmVolume - this.volumeStep);
     },
-
-    setBgmVolume(volume) {
-        this.bgmVolume = this.bgmVolume = Math.max(0, Math.min(10, volume));
-        cc.audioEngine.setVolume(this.current, this.bgmVolume);
-        this.updateVolumeLabel();
-    },
-
-    updateVolumeLabel() {
-        if (this.volumeDisplayLabel) {
-            let volumePercent = Math.round(this.bgmVolume * 10);
-            this.volumeDisplayLabel.string = `Âm lượng: ${volumePercent}%`;
-        }
-    },
-
-    onDestroy() {
+    setVolume(sound,volume) {
+        cc.audioEngine.setVolume(sound, volume);
     },
 
 });
