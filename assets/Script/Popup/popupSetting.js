@@ -8,7 +8,7 @@ cc.Class({
         initialSfxVolume: 0
     },
     musicToggleButton: null,
-    // sfxToggleButton: null, 
+    sfxToggleButton: null, 
     onLoad() {
         this._super();
         console.log("onLoad popup setting");
@@ -16,9 +16,13 @@ cc.Class({
         this.settingLayout = this.node.getChildByName("settingLayout");
         this.settingLayout.active = true;
 
-        let musicToggleNode = this.settingLayout.getChildByName("toggle");
+        let musicToggleNode = this.settingLayout.getChildByName("toggleBgm");
         this.musicToggleButton = musicToggleNode.getComponent(cc.Toggle);
         this.musicToggleButton.node.on('toggle', this.onMusicToggleChanged, this);
+
+        let sfxToggleNode = this.settingLayout.getChildByName("toggleSfx");
+        this.sfxToggleButton = sfxToggleNode.getComponent(cc.Toggle); 
+        this.sfxToggleButton.node.on('toggle', this.onSfxToggleChanged, this);
 
         this.customizePopup();
     },
@@ -38,9 +42,9 @@ cc.Class({
             this.musicToggleButton.isChecked = (this.soundController.bgmVolume > 0.001);
         }
 
-        // if (this.sfxToggleButton) {
-        //     this.sfxToggleButton.isChecked = (this.soundController.clickVolume > 0.001);
-        // }
+        if (this.sfxToggleButton) {
+            this.sfxToggleButton.isChecked = (this.soundController.clickVolume > 0.001);
+        }
     },
     onMusicToggleChanged(toggle) {
 
@@ -67,35 +71,23 @@ cc.Class({
         }
         this.soundController.playSoundClick();
     },
-    // onSfxToggleChanged(toggle) {
-    //     if (!this._soundController) return;
-
-    //     cc.log(this.node.name + " - SFX toggle changed to: " + toggle.isChecked);
-    //     if (toggle.isChecked) {
-    //         // Bật SFX: khôi phục volume hoặc set về mặc định
-    //         if (this._soundController.clickVolume < 0.001 && this._initialSfxVolume < 0.001) {
-    //             this._soundController.clickVolume = 0.8; // Giá trị mặc định khi bật lại từ mute hoàn toàn
-    //         } else if (this._soundController.clickVolume < 0.001) {
-    //             this._soundController.clickVolume = this._initialSfxVolume > 0.001 ? this._initialSfxVolume : 0.8;
-    //         }
-    //          this._initialSfxVolume = this._soundController.clickVolume; // Cập nhật lại initial volume
-    //         // Không cần làm gì thêm vì SFX được phát theo yêu cầu với this.clickVolume
-    //     } else {
-    //         // Tắt SFX (Mute)
-    //         // Lưu lại volume hiện tại của click
-    //         this._initialSfxVolume = this._soundController.clickVolume > 0.001 ? this._soundController.clickVolume : this._initialSfxVolume;
-    //         this._soundController.clickVolume = 0;
-    //         // Hoặc gọi hàm this._soundController.muteSfx();
-    //         // this._soundController.muteSfx(); // Hàm này sẽ set volume của currentClick về 0 (nếu currentClick được quản lý đúng)
-    //         // Tuy nhiên, muteSfx trong soundController hiện tại chỉ mute âm thanh click *cuối cùng* đã phát.
-    //         // Tốt hơn là chỉ cần đặt this._soundController.clickVolume = 0;
-    //     }
-    //     // Vẫn phát âm thanh click khi toggle SFX, trừ khi chính SFX đang bị tắt
-    //     // Nếu người dùng tắt SFX, lần click này sẽ không phát ra tiếng
-    //     if (this._soundController.clickVolume > 0.001 || toggle.isChecked) {
-    //          this._soundController.playSoundClick();
-    //     }
-    // },
+    onSfxToggleChanged(toggle) {
+        
+        if (toggle.isChecked) {
+            if (this.soundController.clickVolume < 0.001 && this.initialSfxVolume < 0.001) {
+                this.soundController.clickVolume = 0.8; 
+            } else if (this.soundController.clickVolume < 0.001) {
+                this.soundController.clickVolume = this.initialSfxVolume > 0.001 ? this.initialSfxVolume : 0.8;
+            }
+             this.initialSfxVolume = this.soundController.clickVolume; 
+        } else {
+            this.initialSfxVolume = this.soundController.clickVolume > 0.001 ? this.soundController.clickVolume : this._initialSfxVolume;
+            this.soundController.clickVolume = 0;
+        }
+        if (this.soundController.clickVolume > 0.001 || toggle.isChecked) {
+             this.soundController.playSoundClick();
+        }
+    },
     customizePopup() {
         let background = this.node.getChildByName("background");
         if (!background) {

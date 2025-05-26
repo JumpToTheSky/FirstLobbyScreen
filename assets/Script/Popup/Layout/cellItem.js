@@ -21,6 +21,8 @@ cc.Class({
 
         if (this.rankLabel) {
             this.rankLabel.string = (rank + 1).toString() + ".";
+            this.rankLabel.width = 130;
+
             if (rank === 0) {
                 this.ribbon.active = true;
                 this.iconGold.active = true;
