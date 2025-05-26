@@ -4,7 +4,10 @@ cc.Class({
     properties: {
     },
     onLoad() {
-        Emitter.instance = new Emitter();
+        
+        if (!Emitter.instance) {
+            Emitter.instance = new Emitter();
+        }
         Emitter.instance.registerEvent("HELLO", this.onHello.bind(this));
         Emitter.instance.registerOnce("WELCOME", this.onWelcome.bind(this));
     },
