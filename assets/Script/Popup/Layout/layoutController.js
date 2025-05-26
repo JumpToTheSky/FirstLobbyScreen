@@ -26,7 +26,7 @@ cc.Class({
 
             cell.name = "cellItem" + i;
             cell.active = false;
-            
+
             this.node.addChild(cell);
             this.listCellScript.push(cellScript);
             this.listCell.push(cell);
@@ -38,7 +38,7 @@ cc.Class({
         }
         for (let i = 0; i < this.listCellScript.length; i++) {
             const cellScript = this.listCellScript[i];
-            if (i < currentPageData.length) {
+            if (i < currentPageData.length) { // Ensure the cell is visible
                 const playerData = currentPageData[i];
                 const playerRank = startIndex + i;
 
