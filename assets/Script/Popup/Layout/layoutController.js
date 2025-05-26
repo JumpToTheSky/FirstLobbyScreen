@@ -22,8 +22,7 @@ cc.Class({
         for (let i = 0; i < this.maxCellsToCreate; i++) {
             let cell = cc.instantiate(this.cellItemPrefab);
             let cellScript = cell.getComponent('cellItem');
-
-            cell.active = false;
+            
             cell.name = "cellItem" + i;
 
             this.node.addChild(cell);
