@@ -56,6 +56,8 @@ cc.Class({
         this.sfxSlider.progress = this.soundController.clickVolume;
         this.bgmSliderBackground.width = 200 * this.soundController.bgmVolume;
         this.sfxSliderBackground.width = 200 * this.soundController.clickVolume;
+        this.updateBgmIcons();
+        this.updateSfxIcons();
     },
     updateTogglesFromSoundController() {
         this.initialBgmVolume = this.soundController.bgmVolume;
@@ -79,7 +81,7 @@ cc.Class({
             this.initialBgmVolume = newVolume;
         }
         this.bgmSliderBackground.width = 200 * newVolume;
-        this.updateSfxIcons();
+        this.updateBgmIcons();
     },
     onSfxSliderChanged(slider) {
         let newVolume = slider.progress;
@@ -104,7 +106,7 @@ cc.Class({
             }
             this.soundController.setVolume(this.soundController.currentBgm, this.soundController.bgmVolume);
             this.initialBgmVolume = this.soundController.bgmVolume;
-            this.updateSfxIcons();
+            this.updateBgmIcons();
 
         } else {
             console.log(this.node.name + " - Music toggle changed to: OFF");
@@ -112,7 +114,7 @@ cc.Class({
             console.log("Initial BGM volume saved: " + this.initialBgmVolume);
             this.soundController.bgmVolume = 0;
             this.soundController.setVolume(this.soundController.currentBgm, 0);
-            this.updateSfxIcons();
+            this.updateBgmIcons();
         }
         this.soundController.playSoundClick();
         this.bgmSliderBackground.width = 200 * this.soundController.bgmVolume;
