@@ -56,7 +56,6 @@ cc.Class({
         }
     },
     onMusicSliderChanged(slider){
-        
         let newVolume = slider.progress;
         newVolume = Math.max(0, Math.min(1, newVolume));
         this.soundController.bgmVolume = newVolume;
@@ -65,7 +64,7 @@ cc.Class({
         if (newVolume > 0.001) {
             this.initialBgmVolume = newVolume;
         }
-        this.bgmSliderBackground.width = 100 * newVolume;
+        this.bgmSliderBackground.width = 300 * newVolume;
     },
     onMusicToggleChanged(toggle) {
 
