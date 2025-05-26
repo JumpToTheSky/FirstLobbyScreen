@@ -111,7 +111,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 500,
+      "width": 550,
       "height": 600
     },
     "_anchorPoint": {
@@ -274,7 +274,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 79.26,
+      "width": 78,
       "height": 50.4
     },
     "_anchorPoint": {
@@ -320,8 +320,8 @@
       }
     ],
     "_useOriginalSize": false,
-    "_string": "LABEL",
-    "_N$string": "LABEL",
+    "_string": "RANK",
+    "_N$string": "RANK",
     "_fontSize": 30,
     "_lineHeight": 40,
     "_enableWrapText": true,
@@ -391,7 +391,7 @@
     },
     "_position": {
       "__type__": "cc.Vec3",
-      "x": 245,
+      "x": 260,
       "y": 290,
       "z": 0
     },
@@ -636,7 +636,7 @@
       "__id__": 1
     },
     "component": "",
-    "_componentId": "6db7aNXpVVPbqXGXBixF3MY",
+    "_componentId": "0ac6aBZGwBB4q5pvyqe6GXk",
     "handler": "hide",
     "customEventData": ""
   },
@@ -695,16 +695,21 @@
     "sync": false
   },
   {
-    "__type__": "6db7aNXpVVPbqXGXBixF3MY",
+    "__type__": "0ac6aBZGwBB4q5pvyqe6GXk",
     "_name": "",
     "_objFlags": 0,
     "node": {
       "__id__": 1
     },
     "_enabled": true,
+    "itemsPerPage": 10,
     "layout": {
       "__uuid__": "7227a2cd-76ca-4a16-809d-ddaa6a7726d5"
     },
+    "paginationControlPrefab": {
+      "__uuid__": "dabc00ac-3b26-4a7c-9b39-1771b7901f5f"
+    },
+    "allPlayersData": [],
     "_id": ""
   },
   {

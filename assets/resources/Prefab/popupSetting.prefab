@@ -114,7 +114,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 600,
+      "width": 500,
       "height": 300
     },
     "_anchorPoint": {
@@ -394,7 +394,7 @@
     },
     "_position": {
       "__type__": "cc.Vec3",
-      "x": 300,
+      "x": 245,
       "y": 144,
       "z": 0
     },
@@ -639,7 +639,7 @@
       "__id__": 1
     },
     "component": "",
-    "_componentId": "6db7aNXpVVPbqXGXBixF3MY",
+    "_componentId": "a644fTE9gFKpoIZAVS7l7y1",
     "handler": "hide",
     "customEventData": ""
   },
@@ -749,7 +749,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 550,
+      "width": 450,
       "height": 200
     },
     "_anchorPoint": {
@@ -923,7 +923,7 @@
     },
     "_position": {
       "__type__": "cc.Vec3",
-      "x": 180,
+      "x": 150,
       "y": 50,
       "z": 0
     },
@@ -1335,7 +1335,7 @@
     "_contentSize": {
       "__type__": "cc.Size",
       "width": 0,
-      "height": 40
+      "height": 50
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -1699,7 +1699,7 @@
     },
     "_position": {
       "__type__": "cc.Vec3",
-      "x": 180,
+      "x": 150,
       "y": -60,
       "z": 0
     },
@@ -2111,7 +2111,7 @@
     "_contentSize": {
       "__type__": "cc.Size",
       "width": 0,
-      "height": 40
+      "height": 50
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -2468,7 +2468,7 @@
     },
     "_position": {
       "__type__": "cc.Vec3",
-      "x": -190,
+      "x": -150,
       "y": 50,
       "z": 0
     },
@@ -2571,7 +2571,7 @@
     },
     "_position": {
       "__type__": "cc.Vec3",
-      "x": -190,
+      "x": -150,
       "y": 50,
       "z": 0
     },
@@ -2674,7 +2674,7 @@
     },
     "_position": {
       "__type__": "cc.Vec3",
-      "x": -190,
+      "x": -150,
       "y": -60,
       "z": 0
     },
@@ -2777,7 +2777,7 @@
     },
     "_position": {
       "__type__": "cc.Vec3",
-      "x": -180,
+      "x": -140,
       "y": -60,
       "z": 0
     },
@@ -2854,16 +2854,29 @@
     "sync": false
   },
   {
-    "__type__": "6db7aNXpVVPbqXGXBixF3MY",
+    "__type__": "a644fTE9gFKpoIZAVS7l7y1",
     "_name": "",
     "_objFlags": 0,
     "node": {
       "__id__": 1
     },
     "_enabled": true,
-    "layout": {
-      "__uuid__": "7227a2cd-76ca-4a16-809d-ddaa6a7726d5"
-    },
+    "initialBgmVolume": 0,
+    "initialSfxVolume": 0,
+    "icons": [
+      {
+        "__id__": 63
+      },
+      {
+        "__id__": 66
+      },
+      {
+        "__id__": 69
+      },
+      {
+        "__id__": 72
+      }
+    ],
     "_id": ""
   },
   {

@@ -7,24 +7,33 @@ cc.Class({
             type: cc.Integer,
             tooltip: "Số lượng người chơi hiển thị trên mỗi trang."
         },
-        nextButton: null,
-        prevButton: null,
-        pageInfoLabel: null,
-        paginationControlNode: null,
-
+        layout: {
+            default: null,
+            type: cc.Prefab,
+            tooltip: "Layout của popup item"
+        },
+        paginationControlPrefab: {
+            default: null,
+            type: cc.Prefab,
+        },
         allPlayersData: [],
-        currentPage: 0,
-        totalPages: 0,
-        currentLayoutNode: null,
-        currentLayoutController: null,
-        isPaginationUiInitialized: false,
+
     },
+    nextButton: null,
+    prevButton: null,
+    pageInfoLabel: null,
+    paginationControlNode: null,
+
+    currentPage: 0,
+    totalPages: 0,
+    currentLayoutNode: null,
+    currentLayoutController: null,
+    isPaginationUiInitialized: false,
     onLoad() {
         this._super();
         console.log("onLoad popup rank");
         this.node.name = "popupRank";
-        this.customizePopup();
-
+        this.initializePaginationUi()
     },
     show() {
         this._super();
@@ -41,16 +50,16 @@ cc.Class({
         this._super();
         console.log("hide popup rank");
     },
-    initializePaginationUi(paginationPrefab, parentNodeForControl) {
+    initializePaginationUi() {
 
         if (this.isPaginationUiInitialized) {
             return;
         }
 
-        this.paginationControlNode = cc.instantiate(paginationPrefab);
-        parentNodeForControl.addChild(this.paginationControlNode);
+        this.paginationControlNode = cc.instantiate(this.paginationControlPrefab);
+        this.node.addChild(this.paginationControlNode);
         this.paginationControlNode.name = "paginationControl";
-        this.paginationControlNode.setPosition(0, -260); 
+        this.paginationControlNode.setPosition(0, -260);
 
         this.prevButton = this.paginationControlNode.getChildByName("layout").getChildByName("buttonPrevious").getComponent(cc.Button);
         this.nextButton = this.paginationControlNode.getChildByName("layout").getChildByName("buttonNext").getComponent(cc.Button);
@@ -65,25 +74,9 @@ cc.Class({
 
         this.isPaginationUiInitialized = true;
         cc.log(this.node.name + " - Pagination UI initialized successfully.");
-        
+
         if (this.allPlayersData.length > 0) {
             this.setupPaginationAndDisplayFirstPage();
-        }
-    },
-    customizePopup() {
-        let background = this.node.getChildByName("background");
-        background.width = 550;
-
-        if (!background) {
-            console.error("Node 'background' not found in popupRank");
-        } else {
-            let label = background.getChildByName("label");
-
-            if (!label) {
-                console.error("Node 'label' not found in background of popupRank");
-            } else {
-                label.getComponent(cc.Label).string = "RANK";
-            }
         }
     },
     loadPlayerData() {
@@ -113,7 +106,7 @@ cc.Class({
         }
 
         this.updatePaginationUi();
-       
+
         if (this.nextButton) {
             this.nextButton.node.active = (this.totalPages > 1);
         }

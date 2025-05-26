@@ -2,11 +2,7 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
-        layout: {
-            default: null,
-            type: cc.Prefab,
-            tooltip: "Layout của popup item"
-        },
+        
     },
     onLoad() {
     },
