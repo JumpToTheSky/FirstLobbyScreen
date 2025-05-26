@@ -42,6 +42,8 @@ cc.Class({
     setSoundController(controllerInstance) {
         this.soundController = controllerInstance;
         this.updateTogglesFromSoundController();
+        this.bgmSlider.progress = this.soundController.bgmVolume;
+        this.bgmSliderBackground.width = 300 * this.soundController.bgmVolume;
     },
     updateTogglesFromSoundController() {
         this.initialBgmVolume = this.soundController.bgmVolume;
