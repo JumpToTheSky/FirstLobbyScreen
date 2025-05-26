@@ -12,7 +12,7 @@ cc.Class({
             type: [cc.Node],
         },
 
-        listCellScript: [], 
+        listCellScript: [],
         maxCellsToCreate: 10
     },
     onLoad() {
@@ -22,9 +22,11 @@ cc.Class({
         for (let i = 0; i < this.maxCellsToCreate; i++) {
             let cell = cc.instantiate(this.cellItemPrefab);
             let cellScript = cell.getComponent('cellItem');
-            
-            cell.name = "cellItem" + i;
 
+
+            cell.name = "cellItem" + i;
+            cell.active = false;
+            
             this.node.addChild(cell);
             this.listCellScript.push(cellScript);
             this.listCell.push(cell);
@@ -43,7 +45,7 @@ cc.Class({
                 cellScript.updateData(playerData, playerRank);
             } else {
                 if (cellScript && cellScript.node) {
-                    cellScript.node.active = false;
+                    cellScript.node.opacity = 0;
                 }
             }
         }
