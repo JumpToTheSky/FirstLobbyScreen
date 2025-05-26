@@ -43,8 +43,6 @@ cc.Class({
             this.powerLabel.string = "LC: " + (playerData.power || "0").toLocaleString();
             this.powerLabel.horizontalAlign = cc.Label.HorizontalAlign.LEFT;
         }
-
-        this.node.opacity = 255;
         this.node.active = true;
     },
 

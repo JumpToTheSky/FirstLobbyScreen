@@ -2,11 +2,7 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
-        popupItemPrefab: {
-            default: null,
-            type: cc.Prefab,
-        },
-        paginationControlPrefab: {
+        popupRankPrefab: {
             default: null,
             type: cc.Prefab,
         },
@@ -14,6 +10,11 @@ cc.Class({
             default: null,
             type: cc.Node,
         },
+        popupSettingPrefab: {
+            default: null,
+            type: cc.Prefab,
+        },
+        listPopupScript: [],
         
     },
 
@@ -26,31 +27,36 @@ cc.Class({
         if (this.soundController) {
             this.soundControllerInstance = this.soundController.getComponent('soundController');
         }
-        this.popupSettingNode = cc.instantiate(this.popupItemPrefab);
+        this.popupSettingNode = cc.instantiate(this.popupSettingPrefab);
         this.node.addChild(this.popupSettingNode);
-        this.scriptSetting = this.popupSettingNode.addComponent('popupSetting');
+        this.scriptSetting = this.popupSettingNode.getComponent('popupSetting');
         this.scriptSetting.setSoundController(this.soundControllerInstance);
         this.scriptSetting.hide();
+        this.listPopupScript.push(this.scriptSetting);
 
-        this.popupRankNode = cc.instantiate(this.popupItemPrefab);
+        this.popupRankNode = cc.instantiate(this.popupRankPrefab);
         this.node.addChild(this.popupRankNode);
-        this.scriptRank = this.popupRankNode.addComponent('popupRank');
-        this.scriptRank.initializePaginationUi(this.paginationControlPrefab, this.popupRankNode);
+        this.scriptRank = this.popupRankNode.getComponent('popupRank');
         this.scriptRank.hide();
+        this.listPopupScript.push(this.scriptRank);
     },
     showSettingPopup() {
         cc.log("showSettingPopup");
+        this.listPopupScript.forEach((popupScript) => {
+            if (popupScript.node.active === true) {
+                popupScript.hide();
+            }
+        });
         this.scriptSetting.show();
-        if (this.scriptRank.node.active === true) {
-            this.scriptRank.hide();
-        }
     },
     showRankPopup() {
         cc.log("showRankPopup");
+        this.listPopupScript.forEach((popupScript) => {
+            if (popupScript.node.active === true) {
+                popupScript.hide();
+            }
+        });
         this.scriptRank.show();
-        if (this.scriptSetting.node.active === true) {
-            this.scriptSetting.hide();
-        }
     },
 
 

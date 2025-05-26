@@ -1665,7 +1665,7 @@
       "__id__": 36
     },
     "_enabled": true,
-    "popupItemPrefab": {
+    "popupRankPrefab": {
       "__uuid__": "ac05f7b1-6084-479e-a27b-5da819614d71"
     },
     "paginationControlPrefab": {
@@ -1673,6 +1673,9 @@
     },
     "soundController": {
       "__id__": 38
+    },
+    "popupSettingPrefab": {
+      "__uuid__": "d86672b1-626e-4744-bcb5-1f8e84bbcdc6"
     },
     "_id": "faJ3KS0X5Jbq3tRqRsyC6U"
   },
