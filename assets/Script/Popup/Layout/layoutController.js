@@ -45,7 +45,7 @@ cc.Class({
                 cellScript.updateData(playerData, playerRank);
             } else {
                 if (cellScript && cellScript.node) {
-                    cellScript.node.opacity = 0;
+                    cellScript.node.active = false;
                 }
             }
         }

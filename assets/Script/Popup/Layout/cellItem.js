@@ -44,7 +44,7 @@ cc.Class({
             this.powerLabel.horizontalAlign = cc.Label.HorizontalAlign.LEFT;
         }
 
-        this.node.opacity = 255;
+        // this.node.opacity = 255;
         this.node.active = true;
     },
 
