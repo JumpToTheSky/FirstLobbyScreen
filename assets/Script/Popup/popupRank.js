@@ -19,12 +19,12 @@ cc.Class({
         currentLayoutController: null,
         isPaginationUiInitialized: false,
     },
-
     onLoad() {
         this._super();
         console.log("onLoad popup rank");
         this.node.name = "popupRank";
         this.customizePopup();
+
     },
     show() {
         this._super();

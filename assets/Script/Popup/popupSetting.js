@@ -8,7 +8,9 @@ cc.Class({
         initialSfxVolume: 0
     },
     musicToggleButton: null,
-    sfxToggleButton: null, 
+    sfxToggleButton: null,
+    bgmSlider: null, 
+    bgmSliderBackground: null,
     onLoad() {
         this._super();
         console.log("onLoad popup setting");
@@ -23,6 +25,13 @@ cc.Class({
         let sfxToggleNode = this.settingLayout.getChildByName("toggleSfx");
         this.sfxToggleButton = sfxToggleNode.getComponent(cc.Toggle); 
         this.sfxToggleButton.node.on('toggle', this.onSfxToggleChanged, this);
+
+        let bgmSliderNode = this.settingLayout.getChildByName("slider");
+        this.bgmSliderBackground = bgmSliderNode.getChildByName("background");
+        
+
+        this.bgmSlider = bgmSliderNode.getComponent(cc.Slider);
+        this.bgmSlider.node.on('slide', this.onMusicSliderChanged, this);
 
         this.customizePopup();
     },
@@ -46,6 +55,18 @@ cc.Class({
             this.sfxToggleButton.isChecked = (this.soundController.clickVolume > 0.001);
         }
     },
+    onMusicSliderChanged(slider){
+        
+        let newVolume = slider.progress;
+        newVolume = Math.max(0, Math.min(1, newVolume));
+        this.soundController.bgmVolume = newVolume;
+        this.soundController.setVolume(this.soundController.currentBgm, newVolume);
+        this.musicToggleButton.isChecked = (newVolume > 0.001);
+        if (newVolume > 0.001) {
+            this.initialBgmVolume = newVolume;
+        }
+        this.bgmSliderBackground.width = 100 * newVolume;
+    },
     onMusicToggleChanged(toggle) {
 
         if (toggle.isChecked) {
@@ -55,11 +76,7 @@ cc.Class({
             } else if (this.soundController.bgmVolume < 0.001) {
                 this.soundController.bgmVolume = this.initialBgmVolume > 0.001 ? this.initialBgmVolume : 0.5;
             }
-            if (!this.soundController.currentBgm || !cc.audioEngine.isMusicPlaying()) {
-                this.soundController.playBgm();
-            } else {
-                this.soundController.setVolume(this.soundController.currentBgm, this.soundController.bgmVolume);
-            }
+            this.soundController.setVolume(this.soundController.currentBgm, this.soundController.bgmVolume);
             this.initialBgmVolume = this.soundController.bgmVolume;
 
         } else {
@@ -81,7 +98,7 @@ cc.Class({
             }
              this.initialSfxVolume = this.soundController.clickVolume; 
         } else {
-            this.initialSfxVolume = this.soundController.clickVolume > 0.001 ? this.soundController.clickVolume : this._initialSfxVolume;
+            this.initialSfxVolume = this.soundController.clickVolume > 0.001 ? this.soundController.clickVolume : this.initialSfxVolume;
             this.soundController.clickVolume = 0;
         }
         if (this.soundController.clickVolume > 0.001 || toggle.isChecked) {
