@@ -79,6 +79,7 @@ cc.Class({
             this.initialBgmVolume = newVolume;
         }
         this.bgmSliderBackground.width = 200 * newVolume;
+        this.updateSfxIcons();
     },
     onSfxSliderChanged(slider) {
         let newVolume = slider.progress;
@@ -90,6 +91,7 @@ cc.Class({
             this.initialSfxVolume = newVolume;
         }
         this.sfxSliderBackground.width = 200 * newVolume;
+        this.updateSfxIcons();
     },
     onMusicToggleChanged(toggle) {
 
@@ -102,6 +104,7 @@ cc.Class({
             }
             this.soundController.setVolume(this.soundController.currentBgm, this.soundController.bgmVolume);
             this.initialBgmVolume = this.soundController.bgmVolume;
+            this.updateSfxIcons();
 
         } else {
             console.log(this.node.name + " - Music toggle changed to: OFF");
@@ -109,6 +112,7 @@ cc.Class({
             console.log("Initial BGM volume saved: " + this.initialBgmVolume);
             this.soundController.bgmVolume = 0;
             this.soundController.setVolume(this.soundController.currentBgm, 0);
+            this.updateSfxIcons();
         }
         this.soundController.playSoundClick();
         this.bgmSliderBackground.width = 200 * this.soundController.bgmVolume;
@@ -123,9 +127,11 @@ cc.Class({
                 this.soundController.clickVolume = this.initialSfxVolume > 0.001 ? this.initialSfxVolume : 0.8;
             }
             this.initialSfxVolume = this.soundController.clickVolume;
+            this.updateSfxIcons();
         } else {
             this.initialSfxVolume = this.soundController.clickVolume > 0.001 ? this.soundController.clickVolume : this.initialSfxVolume;
             this.soundController.clickVolume = 0;
+            this.updateSfxIcons();
         }
         if (this.soundController.clickVolume > 0.001 || toggle.isChecked) {
             this.soundController.playSoundClick();
@@ -133,5 +139,13 @@ cc.Class({
         this.sfxSliderBackground.width = 200 * this.soundController.clickVolume;
         this.sfxSlider.progress = this.soundController.clickVolume;
     },
+    updateBgmIcons() {
+        this.icons[0].active = (this.soundController.bgmVolume > 0.001);
+        this.icons[1].active = (this.soundController.bgmVolume <= 0.001);
+    },
+    updateSfxIcons() {
+        this.icons[2].active = (this.soundController.clickVolume > 0.001);
+        this.icons[3].active = (this.soundController.clickVolume <= 0.001);
+    }  
 
 });

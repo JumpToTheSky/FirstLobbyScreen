@@ -48,7 +48,17 @@ cc.Class({
     },
     hide() {
         this._super();
-        console.log("hide popup rank");
+        cc.log("hide popup rank.");
+        this.onDestroy();
+    },
+    onDestroy() {
+        if (this._prevButtonComponent && this._prevButtonComponent.node) {
+            this._prevButtonComponent.node.off('click', this.onPrevPage, this);
+        }
+        if (this._nextButtonComponent && this._nextButtonComponent.node) {
+            this._nextButtonComponent.node.off('click', this.onNextPage, this);
+        }
+        cc.log(this.node.name + " - popupRank onDestroy.");
     },
     initializePaginationUi() {
 
