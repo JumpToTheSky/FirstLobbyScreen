@@ -1,0 +1,22 @@
+{
+  "name": "firstlobbyscreen",
+  "version": "1.0.0",
+  "description": "Hello world new project template.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JumpToTheSky/FirstLobbyScreen.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JumpToTheSky/FirstLobbyScreen/issues"
+  },
+  "homepage": "https://github.com/JumpToTheSky/FirstLobbyScreen#readme",
+  "dependencies": {
+    "events": "^3.3.0"
+  }
+}

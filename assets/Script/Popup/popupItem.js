@@ -9,7 +9,6 @@ cc.Class({
         },
     },
     onLoad() {
-        this.node.getChildByName("settingLayout").active = false;
     },
     show() {
         this.node.active = true;

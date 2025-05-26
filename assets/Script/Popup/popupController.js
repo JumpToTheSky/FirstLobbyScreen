@@ -2,7 +2,7 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
-        popupItemPrefab: {
+        popupRankPrefab: {
             default: null,
             type: cc.Prefab,
         },
@@ -13,6 +13,10 @@ cc.Class({
         soundController: {
             default: null,
             type: cc.Node,
+        },
+        popupSettingPrefab: {
+            default: null,
+            type: cc.Prefab,
         },
         
     },
@@ -26,13 +30,13 @@ cc.Class({
         if (this.soundController) {
             this.soundControllerInstance = this.soundController.getComponent('soundController');
         }
-        this.popupSettingNode = cc.instantiate(this.popupItemPrefab);
+        this.popupSettingNode = cc.instantiate(this.popupSettingPrefab);
         this.node.addChild(this.popupSettingNode);
         this.scriptSetting = this.popupSettingNode.addComponent('popupSetting');
         this.scriptSetting.setSoundController(this.soundControllerInstance);
         this.scriptSetting.hide();
 
-        this.popupRankNode = cc.instantiate(this.popupItemPrefab);
+        this.popupRankNode = cc.instantiate(this.popupRankPrefab);
         this.node.addChild(this.popupRankNode);
         this.scriptRank = this.popupRankNode.addComponent('popupRank');
         this.scriptRank.initializePaginationUi(this.paginationControlPrefab, this.popupRankNode);

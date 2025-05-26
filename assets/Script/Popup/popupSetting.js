@@ -11,6 +11,8 @@ cc.Class({
     sfxToggleButton: null,
     bgmSlider: null, 
     bgmSliderBackground: null,
+    sfxSlider: null,
+    sfxSliderBackground: null,
     onLoad() {
         this._super();
         console.log("onLoad popup setting");
@@ -26,14 +28,18 @@ cc.Class({
         this.sfxToggleButton = sfxToggleNode.getComponent(cc.Toggle); 
         this.sfxToggleButton.node.on('toggle', this.onSfxToggleChanged, this);
 
-        let bgmSliderNode = this.settingLayout.getChildByName("slider");
+        let bgmSliderNode = this.settingLayout.getChildByName("sliderBgm");
         this.bgmSliderBackground = bgmSliderNode.getChildByName("background");
+
+        let sfxSliderNode = this.settingLayout.getChildByName("sliderSfx");
+        this.sfxSliderBackground = sfxSliderNode.getChildByName("background");
         
 
         this.bgmSlider = bgmSliderNode.getComponent(cc.Slider);
         this.bgmSlider.node.on('slide', this.onMusicSliderChanged, this);
+        this.sfxSlider = sfxSliderNode.getComponent(cc.Slider);
+        this.sfxSlider.node.on('slide', this.onSfxSliderChanged, this);
 
-        this.customizePopup();
     },
     hide() {
         this._super();
@@ -43,7 +49,9 @@ cc.Class({
         this.soundController = controllerInstance;
         this.updateTogglesFromSoundController();
         this.bgmSlider.progress = this.soundController.bgmVolume;
-        this.bgmSliderBackground.width = 300 * this.soundController.bgmVolume;
+        this.sfxSlider.progress = this.soundController.clickVolume;
+        this.bgmSliderBackground.width = 200 * this.soundController.bgmVolume;
+        this.sfxSliderBackground.width = 200 * this.soundController.clickVolume;
     },
     updateTogglesFromSoundController() {
         this.initialBgmVolume = this.soundController.bgmVolume;
@@ -66,7 +74,18 @@ cc.Class({
         if (newVolume > 0.001) {
             this.initialBgmVolume = newVolume;
         }
-        this.bgmSliderBackground.width = 300 * newVolume;
+        this.bgmSliderBackground.width = 200 * newVolume;
+    },
+    onSfxSliderChanged(slider) {
+        let newVolume = slider.progress;
+        newVolume = Math.max(0, Math.min(1, newVolume));
+        this.soundController.clickVolume = newVolume;
+        this.soundController.setVolume(this.soundController.currentClick, newVolume);
+        this.sfxToggleButton.isChecked = (newVolume > 0.001);
+        if (newVolume > 0.001) {
+            this.initialSfxVolume = newVolume;
+        }
+        this.sfxSliderBackground.width = 200 * newVolume;
     },
     onMusicToggleChanged(toggle) {
 
@@ -106,38 +125,5 @@ cc.Class({
              this.soundController.playSoundClick();
         }
     },
-    customizePopup() {
-        let background = this.node.getChildByName("background");
-        if (!background) {
-            console.error("Node 'background' not found in popupSetting");
-        }
-        else {
-            background.width = 600;
-            background.height = 500;
-            let label = background.getChildByName("label");
-            let iconFlagTitle = background.getChildByName("iconFlagTitle");
-            let buttonClose = background.getChildByName("buttonClose");
-
-            if (!buttonClose) {
-                console.error("Node 'buttonClose' not found in background of popupSetting");
-            }
-            else {
-                buttonClose.setPosition(300, 238);
-            }
-            if (!label) {
-                console.error("Node 'label' not found in background of popupSetting");
-            }
-            else {
-                label.getComponent(cc.Label).string = "SETTING";
-                label.setPosition(0, 230);
-            }
-            if (!iconFlagTitle) {
-                console.error("Node 'iconFlagTitle' not found in background of popupSetting");
-            }
-            else {
-                iconFlagTitle.setPosition(0, 225);
-            }
-        }
-    }
-
+    
 });
