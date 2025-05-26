@@ -18,10 +18,6 @@ cc.Class({
     start () {
         if (this.labelComponent) { 
             this.labelComponent.string = "Chào từ script labelController!";
-            this.labelComponent.overflow = cc.Label.Overflow.RESIZE_HEIGHT;
-            this.labelComponent.node.width = this.maxWidthForLabel;
-            this.lblHello.horizontalAlign = cc.Label.HorizontalAlign.LEFT;
-            this.lblHello.verticalAlign = cc.Label.VerticalAlign.TOP;
         }
     },
     testFunc() {
