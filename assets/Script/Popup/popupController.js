@@ -1,3 +1,5 @@
+
+const mEmitter = require('../mEmitter')
 cc.Class({
     extends: cc.Component,
 
@@ -5,10 +7,6 @@ cc.Class({
         popupRankPrefab: {
             default: null,
             type: cc.Prefab,
-        },
-        soundController: {
-            default: null,
-            type: cc.Node,
         },
         popupSettingPrefab: {
             default: null,
@@ -24,13 +22,9 @@ cc.Class({
     popupSettingNode: null,
     popupRankNode: null,
     onLoad() {
-        if (this.soundController) {
-            this.soundControllerInstance = this.soundController.getComponent('soundController');
-        }
         this.popupSettingNode = cc.instantiate(this.popupSettingPrefab);
         this.node.addChild(this.popupSettingNode);
         this.scriptSetting = this.popupSettingNode.getComponent('popupSetting');
-        this.scriptSetting.setSoundController(this.soundControllerInstance);
         this.scriptSetting.hide();
         this.listPopupScript.push(this.scriptSetting);
 
@@ -39,26 +33,38 @@ cc.Class({
         this.scriptRank = this.popupRankNode.getComponent('popupRank');
         this.scriptRank.hide();
         this.listPopupScript.push(this.scriptRank);
+
+        mEmitter.registerEvent('lobbyButtonClicked', this.showPopup.bind(this));
+    },
+    showPopup(buttonName) {
+        cc.log("showPopup: " + buttonName);
+        this.hideAllPopup();
+        switch (buttonName) {
+            case 'SETTING':
+                this.showSettingPopup();
+                break;
+            case 'RANK':
+                this.showRankPopup();
+                break;
+            default:
+                cc.log("Unknown button name: " + buttonName);
+                break;
+        }
     },
     showSettingPopup() {
         cc.log("showSettingPopup");
-        this.listPopupScript.forEach((popupScript) => {
-            if (popupScript.node.active === true) {
-                popupScript.hide();
-            }
-        });
         this.scriptSetting.show();
     },
     showRankPopup() {
         cc.log("showRankPopup");
-        this.listPopupScript.forEach((popupScript) => {
-            if (popupScript.node.active === true) {
-                popupScript.hide();
-            }
-        });
         this.scriptRank.show();
     },
-
+    hideAllPopup() {
+        cc.log("hideAllPopup");
+        this.listPopupScript.forEach((popupScript) => {
+            popupScript.hide();
+        });
+    }
 
 
 });

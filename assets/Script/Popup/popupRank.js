@@ -49,7 +49,6 @@ cc.Class({
     hide() {
         this._super();
         cc.log("hide popup rank.");
-        this.onDestroy();
     },
     onDestroy() {
         if (this._prevButtonComponent && this._prevButtonComponent.node) {

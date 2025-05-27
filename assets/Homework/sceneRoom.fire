@@ -153,7 +153,7 @@
       "__type__": "cc.Vec3",
       "x": 0,
       "y": 0,
-      "z": 221.771495116411
+      "z": 369.1439771407097
     },
     "_scale": {
       "__type__": "cc.Vec3",
@@ -441,6 +441,8 @@
     "loopBgm": true,
     "volumeStep": 0.5,
     "clickVolume": 1,
+    "currentBgmAudioId": null,
+    "currentClickAudioId": null,
     "_id": "66jmVXmP1ElIHKEG4kQA/L"
   },
   {
@@ -832,7 +834,7 @@
       "y": 0.5
     },
     "_fillStart": 0.25,
-    "_fillRange": 0,
+    "_fillRange": -0.5,
     "_isTrimmedMode": true,
     "_atlas": null,
     "_id": "57vJbgVFhJkaxDe5X4AI8x"
@@ -882,7 +884,7 @@
       "__id__": 17
     },
     "_N$mode": 2,
-    "_N$progress": 0,
+    "_N$progress": 0.5,
     "_N$reverse": true,
     "_id": "86mdtTQJxCCJ8xNgEsyWDg"
   },
