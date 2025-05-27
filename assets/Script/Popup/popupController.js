@@ -15,8 +15,6 @@ cc.Class({
         listPopupScript: [],
         
     },
-
-    soundControllerInstance: null,
     scriptRank: null,
     scriptSetting: null,
     popupSettingNode: null,
@@ -25,15 +23,14 @@ cc.Class({
         this.popupSettingNode = cc.instantiate(this.popupSettingPrefab);
         this.node.addChild(this.popupSettingNode);
         this.scriptSetting = this.popupSettingNode.getComponent('popupSetting');
-        this.scriptSetting.hide();
         this.listPopupScript.push(this.scriptSetting);
 
         this.popupRankNode = cc.instantiate(this.popupRankPrefab);
         this.node.addChild(this.popupRankNode);
         this.scriptRank = this.popupRankNode.getComponent('popupRank');
-        this.scriptRank.hide();
         this.listPopupScript.push(this.scriptRank);
 
+        this.hideAllPopup();
         mEmitter.registerEvent('lobbyButtonClicked', this.showPopup.bind(this));
     },
     showPopup(buttonName) {
@@ -41,23 +38,17 @@ cc.Class({
         this.hideAllPopup();
         switch (buttonName) {
             case 'SETTING':
-                this.showSettingPopup();
+                this.scriptSetting.show();
+                console.log("Setting popup shown");
                 break;
             case 'RANK':
-                this.showRankPopup();
+                this.scriptRank.show();
+                console.log("Rank popup shown");
                 break;
             default:
                 cc.log("Unknown button name: " + buttonName);
                 break;
         }
-    },
-    showSettingPopup() {
-        cc.log("showSettingPopup");
-        this.scriptSetting.show();
-    },
-    showRankPopup() {
-        cc.log("showRankPopup");
-        this.scriptRank.show();
     },
     hideAllPopup() {
         cc.log("hideAllPopup");
