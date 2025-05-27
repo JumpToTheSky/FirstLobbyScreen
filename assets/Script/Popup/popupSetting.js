@@ -22,7 +22,6 @@ cc.Class({
 
 
     onLoad() {
-        this._super();
         this.node.name = "popupSetting";
         this.settingLayout = this.node.getChildByName("settingLayout");
 
@@ -57,9 +56,11 @@ cc.Class({
         mEmitter.removeEvent(SOUND_EVENTS.BGM_VOLUME_DID_CHANGE, this.onBgmVolumeDidChange);
         mEmitter.removeEvent(SOUND_EVENTS.SFX_VOLUME_DID_CHANGE, this.onSfxVolumeDidChange);
     },
+
     hide() {
         this._super();
     },
+    
     onBgmVolumeDidChange(volume) {
         this.currentBgmVolumeState = volume;
         if (volume > 0.001) {

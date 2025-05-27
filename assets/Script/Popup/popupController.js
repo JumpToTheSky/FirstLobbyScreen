@@ -33,6 +33,7 @@ cc.Class({
         this.hideAllPopup();
         mEmitter.registerEvent('lobbyButtonClicked', this.showPopup.bind(this));
     },
+    
     showPopup(buttonName) {
         cc.log("showPopup: " + buttonName);
         this.hideAllPopup();
@@ -50,6 +51,7 @@ cc.Class({
                 break;
         }
     },
+    
     hideAllPopup() {
         cc.log("hideAllPopup");
         this.listPopupScript.forEach((popupScript) => {

@@ -30,11 +30,11 @@ cc.Class({
     currentLayoutController: null,
     isPaginationUiInitialized: false,
     onLoad() {
-        this._super();
         console.log("onLoad popup rank");
         this.node.name = "popupRank";
         this.initializePaginationUi()
     },
+
     show() {
         this._super();
         console.log("show popup rank");
@@ -46,10 +46,12 @@ cc.Class({
             }
         }
     },
+
     hide() {
         this._super();
         cc.log("hide popup rank.");
     },
+
     onDestroy() {
         if (this._prevButtonComponent && this._prevButtonComponent.node) {
             this._prevButtonComponent.node.off('click', this.onPrevPage, this);
@@ -59,6 +61,7 @@ cc.Class({
         }
         cc.log(this.node.name + " - popupRank onDestroy.");
     },
+
     initializePaginationUi() {
 
         if (this.isPaginationUiInitialized) {
@@ -88,6 +91,7 @@ cc.Class({
             this.setupPaginationAndDisplayFirstPage();
         }
     },
+
     loadPlayerData() {
         cc.log(this.node.name + " - Loading player data...");
         cc.loader.loadRes("data/fakeData", cc.JsonAsset, (err, jsonAsset) => {
@@ -105,6 +109,7 @@ cc.Class({
             }
         });
     },
+
     setupPaginationAndDisplayFirstPage() {
         if (this.allPlayersData.length === 0) {
             this.totalPages = 0;
@@ -133,6 +138,7 @@ cc.Class({
         }
         this.createOrReuseLayoutAndDisplayPage(this.currentPage);
     },
+
     createOrReuseLayoutAndDisplayPage(pageIndex) {
         if (pageIndex < 0 || (pageIndex >= this.totalPages && this.totalPages > 0)) {
             cc.warn(this.node.name + " - Invalid page index for display:", pageIndex);
@@ -165,6 +171,7 @@ cc.Class({
 
         this.updatePaginationUi();
     },
+
     updatePaginationUi() {
         if (!this.isPaginationUiInitialized) return;
         if (this.pageInfoLabel) {
@@ -185,11 +192,13 @@ cc.Class({
             this.prevButton.node.active = (this.totalPages > 1);
         }
     },
+
     onNextPage() {
         if (this.currentPage < this.totalPages - 1) {
             this.createOrReuseLayoutAndDisplayPage(this.currentPage + 1);
         }
     },
+
     onPrevPage() {
         if (this.currentPage > 0) {
             this.createOrReuseLayoutAndDisplayPage(this.currentPage - 1);
