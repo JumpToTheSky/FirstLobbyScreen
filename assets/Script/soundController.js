@@ -30,13 +30,9 @@ cc.Class({
         mEmitter.registerEvent(SOUND_EVENTS.TOGGLE_SFX_REQUEST, this.handleToggleSfxRequest);
         mEmitter.registerEvent(SOUND_EVENTS.PLAY_CLICK_SOUND_REQUEST, this.playSoundClick);
 
-        if (!this.currentBgmAudioId) {
-            this.playBgm();
-        } else{
-            this.setVolume(this.currentBgmAudioId, this.bgmVolume)
-        }
+        this.playBgm();
     },
-    start() {     
+    start() {
         mEmitter.emit(SOUND_EVENTS.BGM_VOLUME_DID_CHANGE, this.bgmVolume);
         mEmitter.emit(SOUND_EVENTS.SFX_VOLUME_DID_CHANGE, this.clickVolume);
     },
@@ -48,9 +44,7 @@ cc.Class({
         mEmitter.removeEvent(SOUND_EVENTS.TOGGLE_SFX_REQUEST, this.handleToggleSfxRequest);
         mEmitter.removeEvent(SOUND_EVENTS.PLAY_CLICK_SOUND_REQUEST, this.playSoundClick);
 
-        if (this.currentBgmAudioId !== null) {
-            cc.audioEngine.stop(this.currentBgmAudioId);
-        }
+        cc.audioEngine.stop(this.currentBgmAudioId);
     },
 
     handleSetBgmVolumeRequest(newVolume) {
@@ -68,17 +62,14 @@ cc.Class({
 
     handleSetSfxVolumeRequest(newVolume) {
         this.clickVolume = Math.max(0, Math.min(1, newVolume));
-        if (this.currentClickAudioId !== null) {
-            cc.audioEngine.setVolume(this.currentClickAudioId, this.clickVolume);
-        }
+        cc.audioEngine.setVolume(this.currentClickAudioId, this.clickVolume);
         mEmitter.emit(SOUND_EVENTS.SFX_VOLUME_DID_CHANGE, this.clickVolume);
     },
 
     handleToggleSfxRequest(data) {
         this.clickVolume = data.targetVolume;
-        if (this.currentClickAudioId !== null) {
-            cc.audioEngine.setVolume(this.currentClickAudioId, this.clickVolume);
-        }
+        cc.audioEngine.setVolume(this.currentClickAudioId, this.clickVolume);
+
         mEmitter.emit(SOUND_EVENTS.SFX_VOLUME_DID_CHANGE, this.clickVolume);
     },
 
@@ -93,16 +84,11 @@ cc.Class({
     },
 
     playSoundClick() {
-        if (this.audioClick) {
-            if (this.clickVolume > 0.001) {
-                this.currentClickAudioId = cc.audioEngine.play(this.audioClick, false, this.clickVolume);
-            }
-        }
+        this.currentClickAudioId = cc.audioEngine.play(this.audioClick, false, this.clickVolume);
+
     },
 
     setVolume(audioId, volume) {
-        if (audioId !== null) {
-            cc.audioEngine.setVolume(audioId, volume);
-        }
+        cc.audioEngine.setVolume(audioId, volume);
     },
 });
