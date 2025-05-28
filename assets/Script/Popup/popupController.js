@@ -1,5 +1,6 @@
 
 const mEmitter = require('../mEmitter')
+const lobbyEvents = require('../lobbyEvents');
 cc.Class({
     extends: cc.Component,
 
@@ -30,12 +31,13 @@ cc.Class({
         this.scriptRank = this.popupRankNode.getComponent('popupRank');
         this.listPopupScript.push(this.scriptRank);
 
+        this.showPopup = this.showPopup.bind(this);
         this.hideAllPopup();
-        mEmitter.registerEvent('lobbyButtonClicked', this.showPopup.bind(this));
+
+        mEmitter.registerEvent(lobbyEvents.LOBBY_EVENTS.REQUIRE_SHOW_POPUP, this.showPopup);
     },
     
     showPopup(buttonName) {
-        cc.log("showPopup: " + buttonName);
         this.hideAllPopup();
         switch (buttonName) {
             case 'SETTING':
@@ -57,6 +59,10 @@ cc.Class({
         this.listPopupScript.forEach((popupScript) => {
             popupScript.hide();
         });
+    },
+
+    onDestroy() {
+        mEmitter.removeEvent(lobbyEvents.LOBBY_EVENTS.REQUIRE_SHOW_POPUP, this.showPopup);
     }
 
 

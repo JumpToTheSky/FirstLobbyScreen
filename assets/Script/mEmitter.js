@@ -24,6 +24,14 @@ class MEmitter {
         }
     }
 
+    registerEventMap(eventMap) {
+        if (this.emitter) {
+            for (const [event, listener] of Object.entries(eventMap)) {
+                this.emitter.on(event, listener);
+            }
+        }
+    }
+
     removeEvent(event, listener) {
         if (this.emitter) {
             this.emitter.removeListener(event, listener);

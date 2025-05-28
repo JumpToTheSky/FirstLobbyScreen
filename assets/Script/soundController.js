@@ -1,5 +1,5 @@
 const mEmitter = require('./mEmitter');
-const SOUND_EVENTS = require('./soundEvents');
+const lobbyEvents = require('./lobbyEvents');
 
 const BGM_VOLUME_KEY = 'game_bgmVolume';
 const SFX_VOLUME_KEY = 'game_sfxVolume';
@@ -13,7 +13,7 @@ cc.Class({
         bgmVolume: { default: 1, type: cc.Float, range: [0.0, 1, 0.1], slide: true },
         loopBgm: { default: true },
         volumeStep: { default: 1, type: cc.Float, min: 0.1, max: 0.2 },
-        clickVolume: { default: 1, type: cc.Float, range: [0.0, 1, 0.1], slide: true },
+        clickVolume: { default: 0, type: cc.Float, range: [0.0, 1, 0.1], slide: true },
         currentBgmAudioId: null,
         currentClickAudioId: null,
     },
@@ -27,21 +27,21 @@ cc.Class({
 
         this.loadInitialVolumes();
 
-        mEmitter.registerEvent(SOUND_EVENTS.SET_BGM_VOLUME_REQUEST, this.handleSetBgmVolumeRequest);
-        mEmitter.registerEvent(SOUND_EVENTS.TOGGLE_MUSIC_REQUEST, this.handleToggleMusicRequest);
-        mEmitter.registerEvent(SOUND_EVENTS.SET_SFX_VOLUME_REQUEST, this.handleSetSfxVolumeRequest);
-        mEmitter.registerEvent(SOUND_EVENTS.TOGGLE_SFX_REQUEST, this.handleToggleSfxRequest);
-        mEmitter.registerEvent(SOUND_EVENTS.PLAY_CLICK_SOUND_REQUEST, this.playSoundClick);
+        mEmitter.registerEvent(lobbyEvents.SOUND_EVENTS.SET_BGM_VOLUME_REQUEST, this.handleSetBgmVolumeRequest);
+        mEmitter.registerEvent(lobbyEvents.SOUND_EVENTS.TOGGLE_MUSIC_REQUEST, this.handleToggleMusicRequest);
+        mEmitter.registerEvent(lobbyEvents.SOUND_EVENTS.SET_SFX_VOLUME_REQUEST, this.handleSetSfxVolumeRequest);
+        mEmitter.registerEvent(lobbyEvents.SOUND_EVENTS.TOGGLE_SFX_REQUEST, this.handleToggleSfxRequest);
+        mEmitter.registerEvent(lobbyEvents.SOUND_EVENTS.PLAY_CLICK_SOUND_REQUEST, this.playSoundClick);
 
         this.playBgm();
     },
 
     onDestroy() {
-        mEmitter.removeEvent(SOUND_EVENTS.SET_BGM_VOLUME_REQUEST, this.handleSetBgmVolumeRequest);
-        mEmitter.removeEvent(SOUND_EVENTS.TOGGLE_MUSIC_REQUEST, this.handleToggleMusicRequest);
-        mEmitter.removeEvent(SOUND_EVENTS.SET_SFX_VOLUME_REQUEST, this.handleSetSfxVolumeRequest);
-        mEmitter.removeEvent(SOUND_EVENTS.TOGGLE_SFX_REQUEST, this.handleToggleSfxRequest);
-        mEmitter.removeEvent(SOUND_EVENTS.PLAY_CLICK_SOUND_REQUEST, this.playSoundClick);
+        mEmitter.removeEvent(lobbyEvents.SOUND_EVENTS.SET_BGM_VOLUME_REQUEST, this.handleSetBgmVolumeRequest);
+        mEmitter.removeEvent(lobbyEvents.SOUND_EVENTS.TOGGLE_MUSIC_REQUEST, this.handleToggleMusicRequest);
+        mEmitter.removeEvent(lobbyEvents.SOUND_EVENTS.SET_SFX_VOLUME_REQUEST, this.handleSetSfxVolumeRequest);
+        mEmitter.removeEvent(lobbyEvents.SOUND_EVENTS.TOGGLE_SFX_REQUEST, this.handleToggleSfxRequest);
+        mEmitter.removeEvent(lobbyEvents.SOUND_EVENTS.PLAY_CLICK_SOUND_REQUEST, this.playSoundClick);
 
         cc.audioEngine.stop(this.currentBgmAudioId);
     },
@@ -97,6 +97,7 @@ cc.Class({
 
     playSoundClick() {
         this.currentClickAudioId = cc.audioEngine.play(this.audioClick, false, this.clickVolume);
+        console.log("Playing click sound with volume:", this.clickVolume);
     },
 
     setVolume(audioId, volume) {

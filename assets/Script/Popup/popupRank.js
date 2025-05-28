@@ -1,3 +1,5 @@
+const mEmitter = require('../mEmitter');
+const lobbyEvents = require('../lobbyEvents');
 cc.Class({
     extends: require('popupItem'),
 
@@ -204,4 +206,9 @@ cc.Class({
             this.createOrReuseLayoutAndDisplayPage(this.currentPage - 1);
         }
     },
+
+    onCloseButtonClicked() {
+        mEmitter.emit(lobbyEvents.LOBBY_EVENTS.REQUIRE_HIDE_POPUP, this.node.name);
+        this.hide();
+    }
 });
