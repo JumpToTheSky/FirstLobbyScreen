@@ -361,7 +361,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "Character_Sample_09",
+    "_name": "monsterLevel1",
     "_objFlags": 0,
     "_parent": {
       "__id__": 5
@@ -417,7 +417,7 @@
     "_skewY": 0,
     "_is3DNode": false,
     "groupIndex": 0,
-    "_id": "92hppnkvFPxITyWLhBiIIV"
+    "_id": "51kUJZHdJMpqKTZhG5SpLD"
   },
   {
     "__type__": "cc.Sprite",
@@ -449,7 +449,7 @@
     "_fillRange": 0,
     "_isTrimmedMode": true,
     "_atlas": null,
-    "_id": "ed3yJ4NwNDUri0JuJ43YQS"
+    "_id": "69kVZkSK5D64vQV8QT9Q+j"
   },
   {
     "__type__": "cc.PrefabInfo",
