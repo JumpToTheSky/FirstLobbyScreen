@@ -1,3 +1,6 @@
+
+const mEmitter = require('../mEmitter')
+const lobbyEvents = require('../lobbyEvents');
 cc.Class({
     extends: cc.Component,
 
@@ -6,10 +9,6 @@ cc.Class({
             default: null,
             type: cc.Prefab,
         },
-        soundController: {
-            default: null,
-            type: cc.Node,
-        },
         popupSettingPrefab: {
             default: null,
             type: cc.Prefab,
@@ -17,48 +16,54 @@ cc.Class({
         listPopupScript: [],
         
     },
-
-    soundControllerInstance: null,
     scriptRank: null,
     scriptSetting: null,
     popupSettingNode: null,
     popupRankNode: null,
     onLoad() {
-        if (this.soundController) {
-            this.soundControllerInstance = this.soundController.getComponent('soundController');
-        }
         this.popupSettingNode = cc.instantiate(this.popupSettingPrefab);
         this.node.addChild(this.popupSettingNode);
         this.scriptSetting = this.popupSettingNode.getComponent('popupSetting');
-        this.scriptSetting.setSoundController(this.soundControllerInstance);
-        this.scriptSetting.hide();
         this.listPopupScript.push(this.scriptSetting);
 
         this.popupRankNode = cc.instantiate(this.popupRankPrefab);
         this.node.addChild(this.popupRankNode);
         this.scriptRank = this.popupRankNode.getComponent('popupRank');
-        this.scriptRank.hide();
         this.listPopupScript.push(this.scriptRank);
+
+        this.showPopup = this.showPopup.bind(this);
+        this.hideAllPopup();
+
+        mEmitter.registerEvent(lobbyEvents.LOBBY_EVENTS.REQUIRE_SHOW_POPUP, this.showPopup);
     },
-    showSettingPopup() {
-        cc.log("showSettingPopup");
-        this.listPopupScript.forEach((popupScript) => {
-            if (popupScript.node.active === true) {
-                popupScript.hide();
-            }
-        });
-        this.scriptSetting.show();
+    
+    showPopup(buttonName) {
+        this.hideAllPopup();
+        switch (buttonName) {
+            case 'SETTING':
+                this.scriptSetting.show();
+                console.log("Setting popup shown");
+                break;
+            case 'RANK':
+                this.scriptRank.show();
+                console.log("Rank popup shown");
+                break;
+            default:
+                cc.log("Unknown button name: " + buttonName);
+                break;
+        }
     },
-    showRankPopup() {
-        cc.log("showRankPopup");
+    
+    hideAllPopup() {
+        cc.log("hideAllPopup");
         this.listPopupScript.forEach((popupScript) => {
-            if (popupScript.node.active === true) {
-                popupScript.hide();
-            }
+            popupScript.hide();
         });
-        this.scriptRank.show();
     },
 
+    onDestroy() {
+        mEmitter.removeEvent(lobbyEvents.LOBBY_EVENTS.REQUIRE_SHOW_POPUP, this.showPopup);
+    }
 
 
 });

@@ -637,7 +637,7 @@
     },
     "component": "",
     "_componentId": "0ac6aBZGwBB4q5pvyqe6GXk",
-    "handler": "hide",
+    "handler": "onCloseButtonClicked",
     "customEventData": ""
   },
   {
