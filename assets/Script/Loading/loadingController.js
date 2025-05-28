@@ -25,7 +25,7 @@ cc.Class({
             this.loadingLabel.string = `Loading... ${Math.floor(progress * 100)}%`;
         }, () => {
             cc.log("Scene preloaded successfully.");
-            cc.director.loadScene("sceneLobby");
+            cc.director.loadScene("sceneRoom");
         });
     }
 
