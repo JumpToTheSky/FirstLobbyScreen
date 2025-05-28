@@ -28,7 +28,7 @@
       }
     ],
     "_active": true,
-    "_level": 2,
+    "_level": 1,
     "_components": [
       {
         "__id__": 24
@@ -57,8 +57,8 @@
     },
     "_position": {
       "__type__": "cc.Vec3",
-      "x": 0,
-      "y": 0,
+      "x": 780,
+      "y": 360,
       "z": 0
     },
     "_scale": {
@@ -177,7 +177,7 @@
       "__id__": 1
     },
     "asset": {
-      "__id__": 0
+      "__uuid__": "8b69ef7d-699b-464c-a404-5accfd458563"
     },
     "fileId": "23hSzqc/BCtruO7WhakHAs",
     "sync": false
@@ -411,7 +411,7 @@
       "__id__": 1
     },
     "asset": {
-      "__id__": 0
+      "__uuid__": "8b69ef7d-699b-464c-a404-5accfd458563"
     },
     "fileId": "aeslxiscBKY4KNckO4vrBI",
     "sync": false
@@ -454,14 +454,14 @@
       "__id__": 1
     },
     "asset": {
-      "__id__": 0
+      "__uuid__": "8b69ef7d-699b-464c-a404-5accfd458563"
     },
     "fileId": "09AcenI8RPlJv0S7sTyFyf",
     "sync": false
   },
   {
     "__type__": "cc.Node",
-    "_name": "frameProgress copy",
+    "_name": "frameProgress",
     "_objFlags": 0,
     "_parent": {
       "__id__": 5
@@ -557,7 +557,7 @@
       "__id__": 1
     },
     "asset": {
-      "__id__": 0
+      "__uuid__": "8b69ef7d-699b-464c-a404-5accfd458563"
     },
     "fileId": "ac3e8KualIWZdU1cwuLtzH",
     "sync": false
@@ -585,7 +585,7 @@
       "__id__": 1
     },
     "asset": {
-      "__id__": 0
+      "__uuid__": "8b69ef7d-699b-464c-a404-5accfd458563"
     },
     "fileId": "eeXqFD1zxGjYWTP3SI6uOE",
     "sync": false
@@ -715,7 +715,7 @@
       "__id__": 1
     },
     "asset": {
-      "__id__": 0
+      "__uuid__": "8b69ef7d-699b-464c-a404-5accfd458563"
     },
     "fileId": "c0WSzYn9NIn7o1qHAoWLDP",
     "sync": false
@@ -818,7 +818,7 @@
       "__id__": 1
     },
     "asset": {
-      "__id__": 0
+      "__uuid__": "8b69ef7d-699b-464c-a404-5accfd458563"
     },
     "fileId": "24pkGdvnBOGZ0KxjbD/sAg",
     "sync": false
@@ -829,13 +829,13 @@
       "__id__": 1
     },
     "asset": {
-      "__id__": 0
+      "__uuid__": "8b69ef7d-699b-464c-a404-5accfd458563"
     },
     "fileId": "3dYFDr05FCRp+nm24mW8mc",
     "sync": false
   },
   {
-    "__type__": "8554cR092lIf49Yu4n1W78r",
+    "__type__": "269e8geGQxEs7iBMOOHuwCC",
     "_name": "",
     "_objFlags": 0,
     "node": {
@@ -856,7 +856,7 @@
       "__id__": 1
     },
     "asset": {
-      "__id__": 0
+      "__uuid__": "8b69ef7d-699b-464c-a404-5accfd458563"
     },
     "fileId": "22z2aPN95Mb7SgkuM8Ux1t",
     "sync": false

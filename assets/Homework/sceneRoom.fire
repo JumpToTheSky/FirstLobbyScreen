@@ -156,7 +156,7 @@
       "__type__": "cc.Vec3",
       "x": 0,
       "y": 0,
-      "z": 507.4908866176811
+      "z": 207.9218820597958
     },
     "_scale": {
       "__type__": "cc.Vec3",
@@ -213,7 +213,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "roomScene",
+    "_name": "sceneRoom",
     "_objFlags": 0,
     "_parent": {
       "__id__": 2

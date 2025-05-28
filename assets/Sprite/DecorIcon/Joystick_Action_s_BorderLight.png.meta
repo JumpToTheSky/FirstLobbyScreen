@@ -1,6 +1,6 @@
 {
   "ver": "2.3.3",
-  "uuid": "f399828f-fc0a-48a8-8117-8698b54a90c1",
+  "uuid": "548f1697-51a9-4c01-aee9-9baf7cd5c1ee",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
@@ -11,8 +11,8 @@
   "subMetas": {
     "Joystick_Action_s_BorderLight": {
       "ver": "1.0.4",
-      "uuid": "60c7d62b-cfba-4cf4-a78f-87e0ad6b478f",
-      "rawTextureUuid": "f399828f-fc0a-48a8-8117-8698b54a90c1",
+      "uuid": "eb695b70-3bbc-499c-b750-3c2cad4e1877",
+      "rawTextureUuid": "548f1697-51a9-4c01-aee9-9baf7cd5c1ee",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,
