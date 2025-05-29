@@ -18,33 +18,28 @@ cc.Class({
     },
 
     onLoad() {
-        this.createMonster(1, Math.floor(Math.random() * 100));
+        this.boundSpawnMonsterLevel1 = this.spawnMonsterByLevel.bind(this, 1);
+        this.schedule(this.boundSpawnMonsterLevel1, 1.0);
     },
-    spawnMonsterByAmount(monsterLevel, amount = 0) {
-        
-        
-    },
-    instantiateMonster(monsterLevel) {
+    spawnMonsterByLevel(monsterLevel) {
         let monsterPrefab = null;
         if (monsterLevel === 1) {
             monsterPrefab = this.monsterLevel1Prefab;
+
         } else if (monsterLevel === 2) {
             monsterPrefab = this.monsterLevel2Prefab;
         }
-        let accumulatedDelay = 0;
-        isAmountEqualToZero = ammount > 0 ? true : false;
-
-        for (let i = 0; i < amount; i++) {
-            console.log("Creating monster: " + this.monsterIndex);
-
-            this.monsterIndex++;
-            let monsterNode = cc.instantiate(monsterPrefab);
-            this.node.addChild(monsterNode);
-            monsterNode.getComponent("monsterController").delaySpawn(accumulatedDelay);
-            monsterNode.name = "monster" + this.monsterIndex;
-            accumulatedDelay += 0.5;
-        }
+        console.log("Creating monster: " + this.monsterIndex);
+        this.monsterIndex++;
+        let monsterNode = cc.instantiate(monsterPrefab);
+        this.node.addChild(monsterNode);
+        monsterNode.name = "monster" + this.monsterIndex;
+        monsterNode.getComponent("monsterLevel1").setName("monster" + this.monsterIndex);
     },
-
+    update(dt) {
+        if (this.monsterIndex >= 100) {
+            this.unschedule(this.boundSpawnMonsterLevel1);
+        }
+    }
 
 });
