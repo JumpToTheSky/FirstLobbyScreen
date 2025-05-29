@@ -13,19 +13,22 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "Character_Sample_09",
+    "_name": "monster",
     "_objFlags": 0,
     "_parent": null,
     "_children": [],
     "_active": true,
-    "_level": 2,
+    "_level": 1,
     "_components": [
       {
         "__id__": 2
+      },
+      {
+        "__id__": 3
       }
     ],
     "_prefab": {
-      "__id__": 3
+      "__id__": 4
     },
     "_opacity": 255,
     "_color": {
@@ -53,8 +56,8 @@
     },
     "_scale": {
       "__type__": "cc.Vec3",
-      "x": 1,
-      "y": 1,
+      "x": 0.8,
+      "y": 0.8,
       "z": 1
     },
     "_eulerAngles": {
@@ -102,12 +105,22 @@
     "_id": ""
   },
   {
+    "__type__": "673314477RMXLWB6NTi89Lt",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 1
+    },
+    "_enabled": true,
+    "_id": ""
+  },
+  {
     "__type__": "cc.PrefabInfo",
     "root": {
       "__id__": 1
     },
     "asset": {
-      "__id__": 0
+      "__uuid__": "82962c80-7f6a-4ba7-acb1-fbe75edf023c"
     },
     "fileId": "92hppnkvFPxITyWLhBiIIV",
     "sync": false
