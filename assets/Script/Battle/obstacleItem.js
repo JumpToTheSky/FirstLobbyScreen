@@ -27,10 +27,11 @@ cc.Class({
     },
 
     onCollisionEnter: function (other, self) {
-        console.log(self.node.name + " enter " + other.node.name);
-    },
-    onCollisionStay: function (other, self) {
-        console.log(self.node.name + " collision detected with " + other.node.name);
+        if (other.node.group === "MonsterLevel1") {
+            if (other.node.parent === self.node.parent) {
+                this.updateHp(other.getComponent("monsterLevel1").attackDamage);
+            }
+        }
     },
 
     updateHp(hp) {
@@ -48,7 +49,7 @@ cc.Class({
     },
     onDie() {
         console.log(this.node.name + " has died.");
-        this.node.destroy();
+        this.node.active = false;
     }
 
 });

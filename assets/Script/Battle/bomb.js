@@ -28,6 +28,9 @@ cc.Class({
     },
     onDisable() {
         this.onExplored();
+        this.scheduleOnce(() => {
+            this.node.active = true;
+        }, 5);
     },
 
     onExplored() {

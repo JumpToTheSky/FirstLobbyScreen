@@ -1,3 +1,5 @@
+const mEmitter = require("../mEmitter");
+const BATTLE_EVENTS = require("./BATTLE_EVENTS");
 cc.Class({
     extends: cc.Component,
 
@@ -36,30 +38,21 @@ cc.Class({
         }
     },
     onLoad() {
-        this.node.setPosition(800, Math.random() * 401 - 200);
+        this.node.setPosition(800, 0);
         this.hpProgressBar.progress = 1;
         this.background = this.node.getChildByName("background");
         let manager = cc.director.getCollisionManager();
         manager.enabled = true;
         manager.enabledDebugDraw = true;
         this.startWiggleAnimation();
+        this.isDied = false;
     },
 
     onCollisionEnter: function (other, self) {
         if (other.node.group === "Obstacle") {
-            this.updateHp(other.getComponent("bomb").attackDamage);
-            other.getComponent("bomb").updateHp(this.attackDamage);
-        }
-    },
-
-    randomLineStart() {
-        let startLine = Math.floor(Math.random() * 3);
-        if (startLine === 0) {
-            return cc.v2(800, 200);
-        } else if (startLine === 1) {
-            return cc.v2(800, 0);
-        } else {
-            return cc.v2(800, -200);
+            if (other.node.parent === self.node.parent) {
+                this.updateHp(other.getComponent("bomb").attackDamage);
+            }
         }
     },
 
@@ -85,25 +78,37 @@ cc.Class({
         this.scheduleOnce(() => {
             this.node.color = cc.Color.WHITE;
         }, 0.2);
+    },
 
-        if (this.currentHp <= 0) {
-            console.log(this.node.name + " has been destroyed");
-            this.background.stopAllActions();
-            cc.tween(this.node)
-                .to(1.0, { opacity: 0 })
-                .call(() => {
-                    this.node.destroy();
-                })
-                .start();
+    isMonsterDie() {
+        if (this.node.x < -900 || this.currentHp < 0) {
+            console.log(this.node.name + " has died.");
+            this.isDied = true;
+            console.log("Monster " + this.node.name + " has died.");
+            mEmitter.emit(BATTLE_EVENTS.monsterEvents.MONSTER_DIE, this.node.name);
+            return true;
         }
+    },
 
+    onDie() {
+
+        this.speed = 0;
+        this.background.stopAllActions();
+        cc.tween(this.node)
+            .to(1, { opacity: 0 })
+            .call(() => {
+                this.node.destroy();
+            })
+            .start();
     },
 
     update(dt) {
         this.node.x -= this.speed * dt;
-        if (this.node.x < -900) {
-            console.log(this.node.name + " has been destroyed");
-            this.node.destroy();
+        if (!this.isDied) {
+            if (this.isMonsterDie()) {
+                this.onDie();
+            }
         }
+        
     },
 });
