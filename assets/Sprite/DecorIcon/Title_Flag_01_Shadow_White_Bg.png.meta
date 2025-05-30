@@ -1,6 +1,6 @@
 {
   "ver": "2.3.3",
-  "uuid": "38d3ec72-00b5-4db9-805b-33533837a34e",
+  "uuid": "764200fb-5df9-4f49-aad9-b6c4fbb8bfaa",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
@@ -11,8 +11,8 @@
   "subMetas": {
     "Title_Flag_01_Shadow_White_Bg": {
       "ver": "1.0.4",
-      "uuid": "9f6375de-7a45-4d42-bba2-35d25e396e3e",
-      "rawTextureUuid": "38d3ec72-00b5-4db9-805b-33533837a34e",
+      "uuid": "264ac262-a9a3-45c3-87f1-b40c5cf66667",
+      "rawTextureUuid": "764200fb-5df9-4f49-aad9-b6c4fbb8bfaa",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

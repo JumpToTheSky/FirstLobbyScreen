@@ -3,6 +3,16 @@
   "collision-matrix": [
     [
       true
+    ],
+    [
+      false,
+      false,
+      true
+    ],
+    [
+      false,
+      true,
+      false
     ]
   ],
   "design-resolution-height": 720,
@@ -21,7 +31,9 @@
   "fit-height": true,
   "fit-width": false,
   "group-list": [
-    "default"
+    "default",
+    "MonsterLevel1",
+    "Obstacle"
   ],
   "last-module-event-record-time": 1747638883039,
   "simulator-orientation": false,
@@ -29,7 +41,6 @@
     "height": 640,
     "width": 960
   },
-  "start-scene": "105735a3-b06d-4016-a0ac-eb7558bde252",
   "use-customize-simulator": true,
   "use-project-simulator-setting": false
 }

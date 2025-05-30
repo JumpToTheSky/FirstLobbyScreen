@@ -1,6 +1,6 @@
 {
   "ver": "2.3.3",
-  "uuid": "4531c193-bc66-486b-99cb-6c200432fe5d",
+  "uuid": "2b8eaa66-9335-4df5-b070-0145406fa8f8",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
@@ -9,10 +9,10 @@
   "packable": true,
   "platformSettings": {},
   "subMetas": {
-    "SwordBadge_Sword": {
+    "Slider_Border_EdgeDeco_02_Border": {
       "ver": "1.0.4",
-      "uuid": "9cb8db5a-2ad1-4300-973c-5a13b5a5b5cd",
-      "rawTextureUuid": "4531c193-bc66-486b-99cb-6c200432fe5d",
+      "uuid": "b82c2d10-972f-4e4c-9d9f-39e0f621ec5f",
+      "rawTextureUuid": "2b8eaa66-9335-4df5-b070-0145406fa8f8",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,
@@ -20,14 +20,14 @@
       "offsetY": 0,
       "trimX": 0,
       "trimY": 0,
-      "width": 81,
-      "height": 196,
-      "rawWidth": 81,
-      "rawHeight": 196,
-      "borderTop": 0,
-      "borderBottom": 0,
-      "borderLeft": 0,
-      "borderRight": 0,
+      "width": 61,
+      "height": 36,
+      "rawWidth": 61,
+      "rawHeight": 36,
+      "borderTop": 18,
+      "borderBottom": 18,
+      "borderLeft": 26,
+      "borderRight": 27,
       "subMetas": {}
     }
   }

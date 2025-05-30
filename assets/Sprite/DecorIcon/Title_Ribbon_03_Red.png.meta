@@ -1,6 +1,6 @@
 {
   "ver": "2.3.3",
-  "uuid": "f30171b8-0906-4528-8c23-9ed9689eb82d",
+  "uuid": "d2df6391-2461-4715-95df-977e0190a2ab",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
@@ -11,8 +11,8 @@
   "subMetas": {
     "Title_Ribbon_03_Red": {
       "ver": "1.0.4",
-      "uuid": "e6754d90-d939-4fbc-9f87-8ba0d1aecf7e",
-      "rawTextureUuid": "f30171b8-0906-4528-8c23-9ed9689eb82d",
+      "uuid": "f7f24986-f056-492e-babc-891077af5c11",
+      "rawTextureUuid": "d2df6391-2461-4715-95df-977e0190a2ab",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

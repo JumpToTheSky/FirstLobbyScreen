@@ -1,6 +1,6 @@
 {
   "ver": "2.3.3",
-  "uuid": "4531c193-bc66-486b-99cb-6c200432fe5d",
+  "uuid": "79caae7b-7b2c-49a2-a019-a5a928668000",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
@@ -9,10 +9,10 @@
   "packable": true,
   "platformSettings": {},
   "subMetas": {
-    "SwordBadge_Sword": {
+    "Slider_Border_EdgeDeco_02_Demo_Fill": {
       "ver": "1.0.4",
-      "uuid": "9cb8db5a-2ad1-4300-973c-5a13b5a5b5cd",
-      "rawTextureUuid": "4531c193-bc66-486b-99cb-6c200432fe5d",
+      "uuid": "cdd524be-8aa7-429e-8fa5-917e6d9a9e5c",
+      "rawTextureUuid": "79caae7b-7b2c-49a2-a019-a5a928668000",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,
@@ -20,10 +20,10 @@
       "offsetY": 0,
       "trimX": 0,
       "trimY": 0,
-      "width": 81,
-      "height": 196,
-      "rawWidth": 81,
-      "rawHeight": 196,
+      "width": 4,
+      "height": 12,
+      "rawWidth": 4,
+      "rawHeight": 12,
       "borderTop": 0,
       "borderBottom": 0,
       "borderLeft": 0,

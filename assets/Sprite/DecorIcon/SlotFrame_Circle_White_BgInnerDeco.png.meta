@@ -1,6 +1,6 @@
 {
   "ver": "2.3.3",
-  "uuid": "c643e731-6a78-4ce9-b4f7-a1dfe2f259b9",
+  "uuid": "78f4f8e4-240b-4208-a3c7-68439b18dfde",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
@@ -11,8 +11,8 @@
   "subMetas": {
     "SlotFrame_Circle_White_BgInnerDeco": {
       "ver": "1.0.4",
-      "uuid": "0a45c29d-dcf6-44d1-b1d2-dd9e32d46b26",
-      "rawTextureUuid": "c643e731-6a78-4ce9-b4f7-a1dfe2f259b9",
+      "uuid": "5f7429d6-db2d-40d4-bab5-c7f8b602f046",
+      "rawTextureUuid": "78f4f8e4-240b-4208-a3c7-68439b18dfde",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,
