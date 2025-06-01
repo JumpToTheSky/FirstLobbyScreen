@@ -38,11 +38,11 @@ cc.Class({
         },
         touchEventText: {
             default: null,
-            type: cc.Node,
+            type: cc.Prefab,
         },
         evadeEventText: {
             default: null,
-            type: cc.Node,
+            type: cc.Prefab,
         },
 
     },
@@ -62,10 +62,6 @@ cc.Class({
 
         this.onEvadeTouch = this.onEvadeTouch.bind(this);
         mEmitter.registerEvent(BATTLE_EVENTS.TOUCH_EVENTS.EVADE_TOUCH, this.onEvadeTouch);
-
-        this.touchEventText.active = false;
-        this.evadeEventText.active = false;
-
     },
     spawnMonsterByLevel(monsterLevel) {
         let monsterPrefab = null;
@@ -104,28 +100,28 @@ cc.Class({
         }
     },
     onAttackTouch(attackPoint) {
-        this.touchEventText.setPosition(this.node.convertToNodeSpaceAR(attackPoint));
+        let touchEventTextNode = cc.instantiate(this.touchEventText);
+        touchEventTextNode.setPosition(this.node.convertToNodeSpaceAR(attackPoint));
+        this.node.addChild(touchEventTextNode);
         console.log("Attack touch at: " + attackPoint);
         console.log("Touch event text position: " + this.node.convertToNodeSpaceAR(attackPoint));
-        this.touchEventText.active = true;
-        cc.tween(this.touchEventText)
+        cc.tween(touchEventTextNode)
             .to(0.5, { opacity: 0 })
             .call(() => {
-                this.touchEventText.active = false;
-                this.touchEventText.opacity = 255;
+                touchEventTextNode.destroy();
             })
             .start();
     }, 
     onEvadeTouch(evadePoint) {
-        this.evadeEventText.setPosition(this.node.convertToNodeSpaceAR(evadePoint));
+        let evadeEventTextNode = cc.instantiate(this.evadeEventText);
+        evadeEventTextNode.setPosition(this.node.convertToNodeSpaceAR(evadePoint));
+        this.node.addChild(evadeEventTextNode);
         console.log("Evade touch at: " + evadePoint);
         console.log("Evade event text position: " + this.node.convertToNodeSpaceAR(evadePoint));
-        this.evadeEventText.active = true;
-        cc.tween(this.evadeEventText)
+        cc.tween(evadeEventTextNode)
             .to(0.5, { opacity: 0 })
             .call(() => {
-                this.evadeEventText.active = false;
-                this.touchEventText.opacity = 255;
+                evadeEventTextNode.destroy();
             })
             .start();
     },
