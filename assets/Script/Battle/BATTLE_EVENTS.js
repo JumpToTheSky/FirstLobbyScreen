@@ -1,5 +1,14 @@
-const monsterEvents = {
+const MONSTER_EVENTS = {
   MONSTER_DIE: "MONSTER_DIE",
+  MONSTER_HIT: "MONSTER_HIT",
+};
+const TOUCH_EVENTS = {
+  ATK_TOUCH: "ATK_TOUCH",
+  EVADE_TOUCH: "EVADE_TOUCH",
+  BULLET_TOUCH: "BULLET_TOUCH",
+  SKILL_TOUCH: "SKILL_TOUCH",
 };
 
-module.exports = {monsterEvents: monsterEvents};
+module.exports = {
+  MONSTER_EVENTS: MONSTER_EVENTS,
+  TOUCH_EVENTS: TOUCH_EVENTS,};

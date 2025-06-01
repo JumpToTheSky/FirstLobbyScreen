@@ -36,16 +36,35 @@ cc.Class({
             default: [],
             type: [cc.String]
         },
+        touchEventText: {
+            default: null,
+            type: cc.Node,
+        },
+        evadeEventText: {
+            default: null,
+            type: cc.Node,
+        },
 
     },
 
     onLoad() {
         this.boundSpawnMonsterLevel1 = this.spawnMonsterByLevel.bind(this, 1);
         this.schedule(this.boundSpawnMonsterLevel1, 1.0);
+
         this.listAliveMonster = [];
         this.listDieMonster = [];
+
         this.onMonsterDie = this.onMonsterDie.bind(this);
-        mEmitter.registerEvent(BATTLE_EVENTS.monsterEvents.MONSTER_DIE, this.onMonsterDie);
+        mEmitter.registerEvent(BATTLE_EVENTS.MONSTER_EVENTS.MONSTER_DIE, this.onMonsterDie);
+
+        this.onAttackTouch = this.onAttackTouch.bind(this);
+        mEmitter.registerEvent(BATTLE_EVENTS.TOUCH_EVENTS.ATK_TOUCH, this.onAttackTouch);
+
+        this.onEvadeTouch = this.onEvadeTouch.bind(this);
+        mEmitter.registerEvent(BATTLE_EVENTS.TOUCH_EVENTS.EVADE_TOUCH, this.onEvadeTouch);
+
+        this.touchEventText.active = false;
+        this.evadeEventText.active = false;
 
     },
     spawnMonsterByLevel(monsterLevel) {
@@ -84,6 +103,32 @@ cc.Class({
             }
         }
     },
+    onAttackTouch(attackPoint) {
+        this.touchEventText.setPosition(this.node.convertToNodeSpaceAR(attackPoint));
+        console.log("Attack touch at: " + attackPoint);
+        console.log("Touch event text position: " + this.node.convertToNodeSpaceAR(attackPoint));
+        this.touchEventText.active = true;
+        cc.tween(this.touchEventText)
+            .to(0.5, { opacity: 0 })
+            .call(() => {
+                this.touchEventText.active = false;
+                this.touchEventText.opacity = 255;
+            })
+            .start();
+    }, 
+    onEvadeTouch(evadePoint) {
+        this.evadeEventText.setPosition(this.node.convertToNodeSpaceAR(evadePoint));
+        console.log("Evade touch at: " + evadePoint);
+        console.log("Evade event text position: " + this.node.convertToNodeSpaceAR(evadePoint));
+        this.evadeEventText.active = true;
+        cc.tween(this.evadeEventText)
+            .to(0.5, { opacity: 0 })
+            .call(() => {
+                this.evadeEventText.active = false;
+                this.touchEventText.opacity = 255;
+            })
+            .start();
+    },
     onMonsterDie(monsterName) {
         this.listDieMonster.push(monsterName);
         let index = this.listAliveMonster.findIndex(monster => monster.name === monsterName);
@@ -94,7 +139,9 @@ cc.Class({
         this.isWin = true;
     },
     onDestroy() {
-        mEmitter.removeEvent(BATTLE_EVENTS.monsterEvents.MONSTER_DIE, this.onMonsterDie);
+        mEmitter.removeEvent(BATTLE_EVENTS.MONSTER_EVENTS.MONSTER_DIE, this.onMonsterDie);
+        mEmitter.removeEvent(BATTLE_EVENTS.TOUCH_EVENTS.ATK_TOUCH, this.onAttackTouch);
+        mEmitter.removeEvent(BATTLE_EVENTS.TOUCH_EVENTS.EVADE_TOUCH, this.onEvadeTouch);
     },
 
 });

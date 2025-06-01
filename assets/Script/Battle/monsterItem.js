@@ -39,12 +39,17 @@ cc.Class({
         }
     },
     onLoad() {
-        this.node.setPosition(800, 0);
+        let designResolution = cc.view.getDesignResolutionSize();
+        this.canvasHalfWidth = designResolution.width / 2;
+
+        this.node.setPosition(this.canvasHalfWidth + (this.node.width * this.node.anchorX), 0);
         this.hpProgressBar.progress = 1;
         this.background = this.node.getChildByName("background");
+
         let manager = cc.director.getCollisionManager();
         manager.enabled = true;
         manager.enabledDebugDraw = true;
+
         this.startWiggleAnimation();
         this.isDied = false;
     },
@@ -73,8 +78,10 @@ cc.Class({
     onCollisionEnter: function (other, self) {
         if (other.node.group === "Obstacle") {
             if (other.node.parent === self.node.parent) {
-                console.log(collisionUtils.getTouchPoint(other,self));
                 this.updateHp(other.getComponent("bomb").attackDamage);
+                mEmitter.emit(BATTLE_EVENTS.TOUCH_EVENTS.ATK_TOUCH, collisionUtils.getTouchPoint(other, self));
+            } else {
+                mEmitter.emit(BATTLE_EVENTS.TOUCH_EVENTS.EVADE_TOUCH, collisionUtils.getTouchPoint(other, self));
             }
         }
     },
@@ -87,8 +94,7 @@ cc.Class({
         }, 0.2);
     },
     isMonsterDie() {
-        if (this.node.x < -900 || this.currentHp < 0) {
-            console.log(this.node.name + " has died.");
+        if (this.node.x < -(this.canvasHalfWidth + (this.node.width * this.node.anchorX)) || this.currentHp < 0) {
             this.isDied = true;
             return true;
         }
@@ -106,6 +112,6 @@ cc.Class({
     },
     onDestroy() {
         console.log("Monster " + this.node.name + " has died.");
-        mEmitter.emit(BATTLE_EVENTS.monsterEvents.MONSTER_DIE, this.node.name);
+        mEmitter.emit(BATTLE_EVENTS.MONSTER_EVENTS.MONSTER_DIE, this.node.name);
     },
 });
