@@ -64,6 +64,18 @@ cc.Class({
         monsterNode.getComponent("monsterLevel1").setName(monsterNode.name);
         this.listAliveMonster.push(monsterNode);
     },
+    randomSpawnPosition() {
+        let spawnLine = this.spawnLine1;
+        let randomValue = Math.random();
+        if (randomValue < 0.33) {
+            spawnLine = this.spawnLine1;
+        } else if (randomValue < 0.66) {
+            spawnLine = this.spawnLine2;
+        } else {
+            spawnLine = this.spawnLine3;
+        }
+        return spawnLine;
+    },
     update(dt) {
         if (this.listDieMonster.length >= 10 && !this.isWin) {
             this.unschedule(this.boundSpawnMonsterLevel1);
@@ -77,22 +89,12 @@ cc.Class({
         let index = this.listAliveMonster.findIndex(monster => monster.name === monsterName);
         this.listAliveMonster.splice(index, 1);
     },
-
-    randomSpawnPosition() {
-        let spawnLine = this.spawnLine1;
-        let randomValue = Math.random();
-        if (randomValue < 0.33) {
-            spawnLine = this.spawnLine1;
-        } else if (randomValue < 0.66) {
-            spawnLine = this.spawnLine2;
-        } else {
-            spawnLine = this.spawnLine3;
-        }
-        return spawnLine;
-    },
     onWin() {
         console.log("You win!");
         this.isWin = true;
-    }
+    },
+    onDestroy() {
+        mEmitter.removeEvent(BATTLE_EVENTS.monsterEvents.MONSTER_DIE, this.onMonsterDie);
+    },
 
 });
