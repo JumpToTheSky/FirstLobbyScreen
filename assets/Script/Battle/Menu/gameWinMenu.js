@@ -11,5 +11,7 @@ cc.Class({
     },
     onLoad() {
         this.node.active = false;
+        this.replayButton.node.on('click', this.onReplayButtonClick, this);
+        mEmitter.registerEvent(BATTLE_EVENTS.GAME_EVENTS.GAME_WIN, this.onGameWin.bind(this));
     },
 });

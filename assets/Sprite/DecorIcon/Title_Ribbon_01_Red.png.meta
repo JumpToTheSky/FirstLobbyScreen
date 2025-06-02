@@ -1,6 +1,6 @@
 {
   "ver": "2.3.3",
-  "uuid": "ad689a97-9d9a-4018-b998-a272901d0799",
+  "uuid": "1f7b4e94-dd43-464d-b121-6d9843a6329f",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
@@ -9,10 +9,10 @@
   "packable": true,
   "platformSettings": {},
   "subMetas": {
-    "Title_Ribbon_03_White_Bg": {
+    "Title_Ribbon_01_Red": {
       "ver": "1.0.4",
-      "uuid": "2718ac49-aa20-4548-95d3-0342e10dd5d8",
-      "rawTextureUuid": "ad689a97-9d9a-4018-b998-a272901d0799",
+      "uuid": "7c879d31-e3a5-44e4-8043-11c23eb1d194",
+      "rawTextureUuid": "1f7b4e94-dd43-464d-b121-6d9843a6329f",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,
@@ -20,14 +20,14 @@
       "offsetY": 0,
       "trimX": 0,
       "trimY": 0,
-      "width": 218,
-      "height": 84,
-      "rawWidth": 218,
-      "rawHeight": 84,
+      "width": 349,
+      "height": 129,
+      "rawWidth": 349,
+      "rawHeight": 129,
       "borderTop": 0,
       "borderBottom": 0,
-      "borderLeft": 111,
-      "borderRight": 107,
+      "borderLeft": 0,
+      "borderRight": 0,
       "subMetas": {}
     }
   }
