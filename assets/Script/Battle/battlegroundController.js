@@ -95,7 +95,7 @@ cc.Class({
         return spawnLine;
     },
     update(dt) {
-        if (this.listDieMonster.length >= 100 && !this.isWin) {
+        if (this.listDieMonster.length >= 10 && !this.isWin) {
             this.unschedule(this.boundSpawnMonsterLevel1);
             if (this.listAliveMonster.length === 0) {
                 this.onWin();

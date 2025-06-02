@@ -11,13 +11,5 @@ cc.Class({
     },
     onLoad() {
         this.node.active = false;
-        this.onGameWin = this.onGameWin.bind(this);
-        mEmitter.registerEvent(BATTLE_EVENTS.GAME_EVENTS.GAME_WIN, this.onGameWin);
     },
-    onGameWin() {
-        this.node.active = true;
-    },
-    onDestroy() {
-        mEmitter.removeEvent(BATTLE_EVENTS.GAME_EVENTS.GAME_WIN, this.onGameWin);
-    }
 });

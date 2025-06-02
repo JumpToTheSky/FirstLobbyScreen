@@ -1291,7 +1291,7 @@
         "__id__": 34
       }
     ],
-    "_active": false,
+    "_active": true,
     "_level": 3,
     "_components": [
       {
@@ -2616,7 +2616,9 @@
       "__id__": 8
     },
     "gameOverMenu": null,
-    "gameWinMenu": null,
+    "gameWinMenu": {
+      "__id__": 48
+    },
     "gamePauseMenu": null,
     "_id": "70mnm/CAlGz5favOZNswCk"
   },

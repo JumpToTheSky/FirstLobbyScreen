@@ -37,7 +37,6 @@ cc.Class({
     onStartGame() {
         this.startMenu.active = false;
         this.battleground.active = true;
-        mEmitter.emit(BATTLE_EVENTS.GAME_EVENTS.START_GAME);
     },
     onGameOver() {
         this.battleground.active = false;
@@ -45,7 +44,7 @@ cc.Class({
     },
     onGameWin() {
         this.battleground.active = false;
-        mEmitter.emit(BATTLE_EVENTS.GAME_EVENTS.GAME_WIN);
+        this.gameWinMenu.active = true;
     },
     onDestroy() {
         mEmitter.removeEvent(BATTLE_EVENTS.GAME_EVENTS.START_GAME, this.onStartGameBound);
