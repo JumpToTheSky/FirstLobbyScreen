@@ -26,6 +26,9 @@ cc.Class({
         },
     },
     onLoad() {
+        let manager = cc.director.getCollisionManager();    
+        manager.enabled = true;
+        manager.enabledDebugDraw = true;
         this.onStartGameBound = this.onStartGame.bind(this);
         this.onGameOverBound = this.onGameOver.bind(this);
         this.onGameWinBound = this.onGameWin.bind(this);

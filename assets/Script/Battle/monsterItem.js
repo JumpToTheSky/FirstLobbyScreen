@@ -46,10 +46,6 @@ cc.Class({
         this.hpProgressBar.progress = 1;
         this.background = this.node.getChildByName("background");
 
-        let manager = cc.director.getCollisionManager();
-        manager.enabled = true;
-        manager.enabledDebugDraw = true;
-
         this.startWiggleAnimation();
         this.isDied = false;
     },
