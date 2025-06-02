@@ -48,12 +48,6 @@ cc.Class({
     },
 
     onLoad() {
-        this.boundSpawnMonsterLevel1 = this.spawnMonsterByLevel.bind(this, 1);
-        this.schedule(this.boundSpawnMonsterLevel1, 1.0);
-
-        this.listAliveMonster = [];
-        this.listDieMonster = [];
-
         this.onMonsterDie = this.onMonsterDie.bind(this);
         mEmitter.registerEvent(BATTLE_EVENTS.MONSTER_EVENTS.MONSTER_DIE, this.onMonsterDie);
 
@@ -62,6 +56,15 @@ cc.Class({
 
         this.onEvadeTouch = this.onEvadeTouch.bind(this);
         mEmitter.registerEvent(BATTLE_EVENTS.TOUCH_EVENTS.EVADE_TOUCH, this.onEvadeTouch);
+    },
+    onEnable() {
+        this.boundSpawnMonsterLevel1 = this.spawnMonsterByLevel.bind(this, 1);
+        this.schedule(this.boundSpawnMonsterLevel1, 1.0);
+
+        this.listAliveMonster = [];
+        this.listDieMonster = [];
+        this.isWin = false;
+        this.monsterIndex = 0;
     },
     spawnMonsterByLevel(monsterLevel) {
         let monsterPrefab = null;
@@ -92,7 +95,7 @@ cc.Class({
         return spawnLine;
     },
     update(dt) {
-        if (this.listDieMonster.length >= 10 && !this.isWin) {
+        if (this.listDieMonster.length >= 100 && !this.isWin) {
             this.unschedule(this.boundSpawnMonsterLevel1);
             if (this.listAliveMonster.length === 0) {
                 this.onWin();
@@ -133,6 +136,9 @@ cc.Class({
     onWin() {
         console.log("You win!");
         this.isWin = true;
+        mEmitter.emit(BATTLE_EVENTS.GAME_EVENTS.GAME_WIN);
+    },
+    onDisable() {
     },
     onDestroy() {
         mEmitter.removeEvent(BATTLE_EVENTS.MONSTER_EVENTS.MONSTER_DIE, this.onMonsterDie);
