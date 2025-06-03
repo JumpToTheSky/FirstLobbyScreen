@@ -75,7 +75,6 @@ cc.Class({
             monsterPrefab = this.monsterLevel2Prefab;
         }
         this.monsterIndex++;
-        console.log("Creating monster: " + this.monsterIndex);
         let monsterNode = cc.instantiate(monsterPrefab);
         this.randomSpawnPosition().addChild(monsterNode);
         monsterNode.name = "monster" + this.monsterIndex;
@@ -106,8 +105,6 @@ cc.Class({
         let touchEventTextNode = cc.instantiate(this.touchEventText);
         touchEventTextNode.setPosition(this.node.convertToNodeSpaceAR(attackPoint));
         this.node.addChild(touchEventTextNode);
-        console.log("Attack touch at: " + attackPoint);
-        console.log("Touch event text position: " + this.node.convertToNodeSpaceAR(attackPoint));
         cc.tween(touchEventTextNode)
             .to(0.5, { opacity: 0 })
             .call(() => {
@@ -119,8 +116,6 @@ cc.Class({
         let evadeEventTextNode = cc.instantiate(this.evadeEventText);
         evadeEventTextNode.setPosition(this.node.convertToNodeSpaceAR(evadePoint));
         this.node.addChild(evadeEventTextNode);
-        console.log("Evade touch at: " + evadePoint);
-        console.log("Evade event text position: " + this.node.convertToNodeSpaceAR(evadePoint));
         cc.tween(evadeEventTextNode)
             .to(0.5, { opacity: 0 })
             .call(() => {
@@ -131,10 +126,11 @@ cc.Class({
     onMonsterDie(monsterName) {
         this.listDieMonster.push(monsterName);
         let index = this.listAliveMonster.findIndex(monster => monster.name === monsterName);
-        this.listAliveMonster.splice(index, 1);
+        if (index !== -1) {
+            this.listAliveMonster.splice(index, 1);
+        }
     },
     onWin() {
-        console.log("You win!");
         this.isWin = true;
         mEmitter.emit(BATTLE_EVENTS.GAME_EVENTS.GAME_WIN);
     },
