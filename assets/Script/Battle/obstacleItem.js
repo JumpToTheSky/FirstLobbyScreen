@@ -18,9 +18,6 @@ cc.Class({
     },
 
     onLoad() {
-        let manager = cc.director.getCollisionManager();    
-        manager.enabled = true;
-        manager.enabledDebugDraw = true;
         this.hpProgressBar.progress = 1;
         this.background = this.node.getChildByName("background");
 

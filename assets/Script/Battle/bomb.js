@@ -32,7 +32,6 @@ cc.Class({
             this.node.active = true;
         }, 5);
     },
-
     onExplored() {
         console.log("BOOM!");
     },

@@ -1,98 +1,59 @@
-const mEmitter = require("../mEmitter");
-const BATTLE_EVENTS = require("./BATTLE_EVENTS");
+const mEmitter = require('../mEmitter');
+const BATTLE_EVENTS = require('./BATTLE_EVENTS');
 cc.Class({
     extends: cc.Component,
 
     properties: {
-        monsterLevel1Prefab: {
-            default: null,
-            type: cc.Prefab
-        },
-        monsterLevel2Prefab: {
-            default: null,
-            type: cc.Prefab
-        },
-        monsterIndex: {
-            default: 0,
-            type: cc.Integer
-        },
-        spawnLine1: {
+        startMenu: {
             default: null,
             type: cc.Node
         },
-        spawnLine2: {
+        battleground: {
             default: null,
             type: cc.Node
         },
-        spawnLine3: {
+        gameOverMenu: {
             default: null,
             type: cc.Node
         },
-        listAliveMonster: {
-            default: [],
-            type: [cc.Node]
+        gameWinMenu: {
+            default: null,
+            type: cc.Node
         },
-        listDieMonster: {
-            default: [],
-            type: [cc.String]
+        gamePauseMenu: {
+            default: null,
+            type: cc.Node
         },
-
     },
-
     onLoad() {
-        this.boundSpawnMonsterLevel1 = this.spawnMonsterByLevel.bind(this, 1);
-        this.schedule(this.boundSpawnMonsterLevel1, 1.0);
-        this.listAliveMonster = [];
-        this.listDieMonster = [];
-        this.onMonsterDie = this.onMonsterDie.bind(this);
-        mEmitter.registerEvent(BATTLE_EVENTS.monsterEvents.MONSTER_DIE, this.onMonsterDie);
-
+        let manager = cc.director.getCollisionManager();    
+        manager.enabled = true;
+        manager.enabledDebugDraw = true;
+        this.onStartGameBound = this.onStartGame.bind(this);
+        this.onGameOverBound = this.onGameOver.bind(this);
+        this.onGameWinBound = this.onGameWin.bind(this);
+        mEmitter.registerEvent(BATTLE_EVENTS.GAME_EVENTS.START_GAME, this.onStartGameBound);
+        mEmitter.registerEvent(BATTLE_EVENTS.GAME_EVENTS.GAME_OVER, this.onGameOverBound);
+        mEmitter.registerEvent(BATTLE_EVENTS.GAME_EVENTS.GAME_WIN, this.onGameWinBound);
+        this.battleground.active = false;
     },
-    spawnMonsterByLevel(monsterLevel) {
-        let monsterPrefab = null;
-        if (monsterLevel === 1) {
-            monsterPrefab = this.monsterLevel1Prefab;
-
-        } else if (monsterLevel === 2) {
-            monsterPrefab = this.monsterLevel2Prefab;
-        }
-        this.monsterIndex++;
-        console.log("Creating monster: " + this.monsterIndex);
-        let monsterNode = cc.instantiate(monsterPrefab);
-        this.randomSpawnPosition().addChild(monsterNode);
-        monsterNode.name = "monster" + this.monsterIndex;
-        monsterNode.getComponent("monsterLevel1").setName(monsterNode.name);
-        this.listAliveMonster.push(monsterNode);
+    onStartGame() {
+        this.startMenu.active = false;
+        this.battleground.active = true;
     },
-    update(dt) {
-        if (this.listDieMonster.length >= 10 && !this.isWin) {
-            this.unschedule(this.boundSpawnMonsterLevel1);
-            if (this.listAliveMonster.length === 0) {
-                this.onWin();
-            }
-        }
+    onGameOver() {
+        this.battleground.active = false;
+        this.gameOverMenu.active = true;
     },
-    onMonsterDie(monsterName) {
-        this.listDieMonster.push(monsterName);
-        let index = this.listAliveMonster.findIndex(monster => monster.name === monsterName);
-        this.listAliveMonster.splice(index, 1);
+    onGameWin() {
+        this.battleground.active = false;
+        this.gameWinMenu.active = true;
+    },
+    onDestroy() {
+        mEmitter.removeEvent(BATTLE_EVENTS.GAME_EVENTS.START_GAME, this.onStartGameBound);
+        mEmitter.removeEvent(BATTLE_EVENTS.GAME_EVENTS.GAME_OVER, this.onGameOverBound);
+        mEmitter.removeEvent(BATTLE_EVENTS.GAME_EVENTS.GAME_WIN, this.onGameWinBound);
     },
 
-    randomSpawnPosition() {
-        let spawnLine = this.spawnLine1;
-        let randomValue = Math.random();
-        if (randomValue < 0.33) {
-            spawnLine = this.spawnLine1;
-        } else if (randomValue < 0.66) {
-            spawnLine = this.spawnLine2;
-        } else {
-            spawnLine = this.spawnLine3;
-        }
-        return spawnLine;
-    },
-    onWin() {
-        console.log("You win!");
-        this.isWin = true;
-    }
 
 });

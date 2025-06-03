@@ -1,6 +1,6 @@
 {
   "ver": "2.3.3",
-  "uuid": "e9a202ed-b11b-46b2-90e2-f76dc58a603d",
+  "uuid": "3e247ed2-f778-49a8-9a47-04bb9f4d37f1",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
@@ -9,10 +9,10 @@
   "packable": true,
   "platformSettings": {},
   "subMetas": {
-    "Button_Rectangle_01_Convex_White_Bg": {
+    "AactionText_Critical": {
       "ver": "1.0.4",
-      "uuid": "73f898d3-695a-46b5-8c14-f2f487344bf2",
-      "rawTextureUuid": "e9a202ed-b11b-46b2-90e2-f76dc58a603d",
+      "uuid": "49420f30-deb8-4eaf-8e90-026c005ef58f",
+      "rawTextureUuid": "3e247ed2-f778-49a8-9a47-04bb9f4d37f1",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,
@@ -20,14 +20,14 @@
       "offsetY": 0,
       "trimX": 0,
       "trimY": 0,
-      "width": 62,
-      "height": 60,
-      "rawWidth": 62,
-      "rawHeight": 60,
-      "borderTop": 20,
-      "borderBottom": 19,
-      "borderLeft": 17,
-      "borderRight": 18,
+      "width": 117,
+      "height": 32,
+      "rawWidth": 117,
+      "rawHeight": 32,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
       "subMetas": {}
     }
   }
