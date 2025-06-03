@@ -31,6 +31,8 @@ cc.Class({
     onEnable() {
         this.sword1.parent = this.frontBackground;
         this.sword2.parent = this.frontBackground;
+        this.sword1.angle = -135
+        this.sword2.angle = 135;
         this.performSwordTweenAction(-300, 300, this.sword1);
         this.performSwordTweenAction(300, 300, this.sword2);
     },
@@ -43,7 +45,7 @@ cc.Class({
     performSwordTweenAction(x, y, swordIndex) {
         const initialPosition = cc.v2(0, 0);
         const targetPosition = cc.v2(x, y);
-        const moveDuration = 0.7;
+        const moveDuration = 0.3;
         const rotateDuration = 0.1;
         let swordAngle = 0;
         if (swordIndex === this.sword2) {

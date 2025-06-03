@@ -4,9 +4,9 @@ cc.Class({
     properties: {
     },
     onLoad() {
-        this.initialSpeed = 300;
+        this._super();
+        this.initialSpeed = 500;
         this.attackDamage = 50;
         this.maxHp = 200;
-        this._super();
     }
 });

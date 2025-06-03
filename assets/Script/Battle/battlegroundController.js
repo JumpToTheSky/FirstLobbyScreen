@@ -34,7 +34,7 @@ cc.Class({
         },
         listDieMonster: {
             default: [],
-            type: [cc.String]
+            type: [String]
         },
         touchEventText: {
             default: null,
@@ -44,10 +44,15 @@ cc.Class({
             default: null,
             type: cc.Prefab,
         },
-
+        bombList: {
+            default: [],
+            type: [cc.Node]
+        },
     },
 
     onLoad() {
+        this.node.active = false;
+
         this.onMonsterDie = this.onMonsterDie.bind(this);
         mEmitter.registerEvent(BATTLE_EVENTS.MONSTER_EVENTS.MONSTER_DIE, this.onMonsterDie);
 
@@ -65,12 +70,15 @@ cc.Class({
         this.listDieMonster = [];
         this.isWin = false;
         this.monsterIndex = 0;
+
+        this.bombList.forEach((bomb,index) => {
+            bomb.active = true;
+        });
     },
     spawnMonsterByLevel(monsterLevel) {
         let monsterPrefab = null;
         if (monsterLevel === 1) {
             monsterPrefab = this.monsterLevel1Prefab;
-
         } else if (monsterLevel === 2) {
             monsterPrefab = this.monsterLevel2Prefab;
         }
@@ -94,7 +102,7 @@ cc.Class({
         return spawnLine;
     },
     update(dt) {
-        if (this.listDieMonster.length >= 10 && !this.isWin) {
+        if (this.listDieMonster.length >= 5 && !this.isWin) {
             this.unschedule(this.boundSpawnMonsterLevel1);
             if (this.listAliveMonster.length === 0) {
                 this.onWin();
@@ -132,14 +140,25 @@ cc.Class({
     },
     onWin() {
         this.isWin = true;
-        mEmitter.emit(BATTLE_EVENTS.GAME_EVENTS.GAME_WIN);
+        this.scheduleOnce(() => {
+            mEmitter.emit(BATTLE_EVENTS.GAME_EVENTS.GAME_RESULT, { result: "win" });
+        }, 1.0);
+        console.log("You win!");
     },
     onDisable() {
+        this.unschedule(this.boundSpawnMonsterLevel1);
+        for (let i = 0; i < this.listAliveMonster.length; i++) {
+            if (cc.isValid(this.listAliveMonster[i])) {
+                this.listAliveMonster[i].destroy();
+            }
+        }
+        this.listAliveMonster = [];
+        this.listDieMonster = [];
+        console.log("BattlegroundController disabled, all monsters destroyed.");
     },
     onDestroy() {
         mEmitter.removeEvent(BATTLE_EVENTS.MONSTER_EVENTS.MONSTER_DIE, this.onMonsterDie);
         mEmitter.removeEvent(BATTLE_EVENTS.TOUCH_EVENTS.ATK_TOUCH, this.onAttackTouch);
         mEmitter.removeEvent(BATTLE_EVENTS.TOUCH_EVENTS.EVADE_TOUCH, this.onEvadeTouch);
     },
-
 });
