@@ -84,6 +84,8 @@ cc.Class({
         this.bombList.forEach((bomb) => {
             if(bomb) bomb.active = true;
         });
+
+        console.log("BattlegroundController enabled");
         
         if (this.sceneFsm.is('playing')) {
             this.boundSpawnMonsterLevel1 = this.spawnMonsterByLevel.bind(this, 1);

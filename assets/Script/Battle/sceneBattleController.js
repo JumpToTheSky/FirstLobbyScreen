@@ -42,9 +42,6 @@ cc.Class({
             methods: {
                 onEnterIdle: function () {
                     self.startMenu.active = true;
-                    self.battleground.active = false;
-                    self.gameResultMenuNode.active = false;
-                    self.gamePauseMenu.active = false;
                 },
                 onEnterPlaying: function () {
                     self.startMenu.active = false;
@@ -81,11 +78,12 @@ cc.Class({
         }
 
         if (this.fsm.is('idle')) {
-            this.fsm.methods.onEnterIdle.call(this.fsm);
+            this.fsm.onEnterIdle;
         }
     },
 
     handleStartGame() {
+        console.log('Game start requested');
         if (this.fsm.can('requestStart')) {
             this.fsm.requestStart();
         }
