@@ -1,4 +1,3 @@
-
 const mEmitter = require('../mEmitter');
 const BATTLE_EVENTS = require('./BATTLE_EVENTS');
 const StateMachine = require('javascript-state-machine');
@@ -26,9 +25,8 @@ cc.Class({
     },
 
     onLoad() {
-        let manager = cc.director.getCollisionManager();    
+        let manager = cc.director.getCollisionManager();
         manager.enabled = true;
-        manager.enabledDebugDraw = true;
 
         const self = this;
         this.fsm = new StateMachine({
@@ -42,41 +40,29 @@ cc.Class({
                 { name: 'requestReplay', from: 'result', to: 'idle' },
             ],
             methods: {
-                onEnterIdle: function() {
+                onEnterIdle: function () {
                     self.startMenu.active = true;
                     self.battleground.active = false;
-                    if (self.gameResultMenuNode) self.gameResultMenuNode.active = false;
-                    if (self.gamePauseMenu) self.gamePauseMenu.active = false;
+                    self.gameResultMenuNode.active = false;
+                    self.gamePauseMenu.active = false;
                 },
-                onEnterPlaying: function() {
+                onEnterPlaying: function () {
                     self.startMenu.active = false;
-                    self.battleground.active = true; // onEnable của battleground sẽ reset nó
-                    if (self.gameResultMenuNode) self.gameResultMenuNode.active = false;
-                    if (self.gamePauseMenu) self.gamePauseMenu.active = false;
-                    // cc.director.resume(); // Nếu bạn sử dụng cc.director.pause()
+                    self.battleground.active = true;
+                    self.gameResultMenuNode.active = false;
+                    self.gamePauseMenu.active = false;
                 },
-                onLeavePlaying: function() {
-                    // Có thể cần để tắt battleground nếu chuyển sang paused mà không muốn nó active
-                    // Tuy nhiên, thường thì battleground vẫn active nhưng logic update bị dừng
+                onLeavePlaying: function () {
                 },
-                onEnterPaused: function() {
-                    // battleground vẫn active = true, nhưng logic game nên dừng
-                    // cc.director.pause(); // Dừng toàn bộ game (actions, updates, schedulers)
-                                        // Lưu ý: Điều này cũng sẽ dừng animation của gamePauseMenu nếu nó có.
-                                        // Một giải pháp khác là battlegroundController tự kiểm tra FSM state của sceneBattleController.
-                    if (self.gamePauseMenu) self.gamePauseMenu.active = true;
+                onEnterPaused: function () {
+                    self.gamePauseMenu.active = true;
                 },
-                onLeavePaused: function() {
-                    if (self.gamePauseMenu) self.gamePauseMenu.active = false;
-                    // cc.director.resume(); // Nếu bạn sử dụng cc.director.pause()
+                onLeavePaused: function () {
+                    self.gamePauseMenu.active = false;
                 },
-                onEnterResult: function(lifecycle, gameData) {
-                    self.battleground.active = false; // Tắt battleground
-                    if (self.gameResultMenuNode) {
-                        self.gameResultMenuNode.active = true;
-                        // gameResultMenu sẽ lắng nghe GAME_RESULT để cập nhật UI thắng/thua
-                        // Hoặc bạn có thể truyền gameData vào component gameResultMenu tại đây
-                    }
+                onEnterResult: function (lifecycle, gameData) {
+                    self.battleground.active = false;
+                    self.gameResultMenuNode.active = true;
                 },
             }
         });
@@ -93,11 +79,9 @@ cc.Class({
         for (const eventName in this.eventHandlers) {
             mEmitter.registerEvent(eventName, this.eventHandlers[eventName]);
         }
-        
-        // Khởi tạo trạng thái ban đầu bằng cách kích hoạt FSM (nếu cần)
-        // Hoặc đảm bảo onEnterIdle được gọi nếu init là 'idle'
+
         if (this.fsm.is('idle')) {
-             this.fsm.methods.onEnterIdle(); // Gọi thủ công lần đầu nếu FSM không tự gọi onEnter<state> khi init
+            this.fsm.methods.onEnterIdle.call(this.fsm);
         }
     },
 
@@ -108,38 +92,40 @@ cc.Class({
     },
 
     handleGameResult(data) {
-        if (this.fsm.can('showGameResult')) {
-            this.fsm.showGameResult(data); // Truyền data vào FSM method nếu cần
+        if (this.fsm.is('playing') && this.fsm.can('showGameResult')) {
+            this.fsm.showGameResult(data);
         }
     },
 
     handleReplayGame() {
-        if (this.fsm.can('requestReplay')) {
+        if (this.fsm.is('result') && this.fsm.can('requestReplay')) {
             this.fsm.requestReplay();
         }
     },
 
     handleGamePauseRequest() {
-        if (this.fsm.can('requestPause')) {
+        if (this.fsm.is('playing') && this.fsm.can('requestPause')) {
             this.fsm.requestPause();
         }
     },
 
     handleGameResumeRequest() {
-        if (this.fsm.can('requestResume')) {
+        if (this.fsm.is('paused') && this.fsm.can('requestResume')) {
             this.fsm.requestResume();
         }
     },
 
     handleQuitToMenuRequest() {
-        if (this.fsm.can('requestQuitToMenu')) {
+        if (this.fsm.is('paused') && this.fsm.can('requestQuitToMenu')) {
             this.fsm.requestQuitToMenu();
         }
     },
 
     onDestroy() {
         for (const eventName in this.eventHandlers) {
-            mEmitter.removeEvent(eventName, this.eventHandlers[eventName]);
+            if (this.eventHandlers.hasOwnProperty(eventName)) {
+                mEmitter.removeEvent(eventName, this.eventHandlers[eventName]);
+            }
         }
         this.eventHandlers = null;
     },

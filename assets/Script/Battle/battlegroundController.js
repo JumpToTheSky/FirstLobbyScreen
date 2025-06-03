@@ -48,6 +48,14 @@ cc.Class({
             default: [],
             type: [cc.Node]
         },
+        pauseButton: {
+            default: null,
+            type: cc.Button
+        },
+        sceneControllerNode: {
+            default: null,
+            type: cc.Node
+        }
     },
 
     onLoad() {
@@ -61,34 +69,48 @@ cc.Class({
 
         this.onEvadeTouch = this.onEvadeTouch.bind(this);
         mEmitter.registerEvent(BATTLE_EVENTS.TOUCH_EVENTS.EVADE_TOUCH, this.onEvadeTouch);
-    },
-    onEnable() {
-        this.boundSpawnMonsterLevel1 = this.spawnMonsterByLevel.bind(this, 1);
-        this.schedule(this.boundSpawnMonsterLevel1, 1.0);
 
+        this.pauseButton.node.on('click', this.onPauseButtonClick, this);
+        
+        this.sceneFsm = this.sceneControllerNode.getComponent('sceneBattleController').fsm;
+    },
+
+    onEnable() {
         this.listAliveMonster = [];
         this.listDieMonster = [];
         this.isWin = false;
         this.monsterIndex = 0;
 
-        this.bombList.forEach((bomb,index) => {
-            bomb.active = true;
+        this.bombList.forEach((bomb) => {
+            if(bomb) bomb.active = true;
         });
+        
+        if (this.sceneFsm.is('playing')) {
+            this.boundSpawnMonsterLevel1 = this.spawnMonsterByLevel.bind(this, 1);
+            this.schedule(this.boundSpawnMonsterLevel1, 1.0);
+        }
     },
+
     spawnMonsterByLevel(monsterLevel) {
+        if (!this.sceneFsm || !this.sceneFsm.is('playing')) return;
+
         let monsterPrefab = null;
         if (monsterLevel === 1) {
             monsterPrefab = this.monsterLevel1Prefab;
         } else if (monsterLevel === 2) {
             monsterPrefab = this.monsterLevel2Prefab;
         }
+        if (!monsterPrefab) return;
+
         this.monsterIndex++;
         let monsterNode = cc.instantiate(monsterPrefab);
         this.randomSpawnPosition().addChild(monsterNode);
         monsterNode.name = "monster" + this.monsterIndex;
-        monsterNode.getComponent("monsterLevel1").setName(monsterNode.name);
+        const monsterScript = monsterNode.getComponent("monsterItem") || monsterNode.getComponent("monsterLevel1");
+        monsterScript.setName(monsterNode.name);
         this.listAliveMonster.push(monsterNode);
     },
+
     randomSpawnPosition() {
         let spawnLine = this.spawnLine1;
         let randomValue = Math.random();
@@ -101,7 +123,10 @@ cc.Class({
         }
         return spawnLine;
     },
+
     update(dt) {
+        if (!this.sceneFsm || !this.sceneFsm.is('playing')) return;
+
         if (this.listDieMonster.length >= 5 && !this.isWin) {
             this.unschedule(this.boundSpawnMonsterLevel1);
             if (this.listAliveMonster.length === 0) {
@@ -109,7 +134,15 @@ cc.Class({
             }
         }
     },
+    
+    onPauseButtonClick() {
+        if (this.sceneFsm && this.sceneFsm.is('playing')) {
+             mEmitter.emit(BATTLE_EVENTS.GAME_EVENTS.GAME_PAUSE_REQUEST);
+        }
+    },
+
     onAttackTouch(attackPoint) {
+        if (!this.sceneFsm || !this.sceneFsm.is('playing')) return;
         let touchEventTextNode = cc.instantiate(this.touchEventText);
         touchEventTextNode.setPosition(this.node.convertToNodeSpaceAR(attackPoint));
         this.node.addChild(touchEventTextNode);
@@ -120,7 +153,9 @@ cc.Class({
             })
             .start();
     }, 
+
     onEvadeTouch(evadePoint) {
+        if (!this.sceneFsm || !this.sceneFsm.is('playing')) return;
         let evadeEventTextNode = cc.instantiate(this.evadeEventText);
         evadeEventTextNode.setPosition(this.node.convertToNodeSpaceAR(evadePoint));
         this.node.addChild(evadeEventTextNode);
@@ -131,6 +166,7 @@ cc.Class({
             })
             .start();
     },
+
     onMonsterDie(monsterName) {
         this.listDieMonster.push(monsterName);
         let index = this.listAliveMonster.findIndex(monster => monster.name === monsterName);
@@ -138,27 +174,31 @@ cc.Class({
             this.listAliveMonster.splice(index, 1);
         }
     },
+
     onWin() {
         this.isWin = true;
         this.scheduleOnce(() => {
             mEmitter.emit(BATTLE_EVENTS.GAME_EVENTS.GAME_RESULT, { result: "win" });
         }, 1.0);
-        console.log("You win!");
     },
+
     onDisable() {
-        this.unschedule(this.boundSpawnMonsterLevel1);
+        this.unscheduleAllCallbacks();
         for (let i = 0; i < this.listAliveMonster.length; i++) {
-            if (cc.isValid(this.listAliveMonster[i])) {
-                this.listAliveMonster[i].destroy();
-            }
+            this.listAliveMonster[i].destroy();
         }
         this.listAliveMonster = [];
         this.listDieMonster = [];
-        console.log("BattlegroundController disabled, all monsters destroyed.");
+        
+        this.bombList.forEach((bomb) => {
+            bomb.active = false;
+        });
     },
+
     onDestroy() {
         mEmitter.removeEvent(BATTLE_EVENTS.MONSTER_EVENTS.MONSTER_DIE, this.onMonsterDie);
         mEmitter.removeEvent(BATTLE_EVENTS.TOUCH_EVENTS.ATK_TOUCH, this.onAttackTouch);
         mEmitter.removeEvent(BATTLE_EVENTS.TOUCH_EVENTS.EVADE_TOUCH, this.onEvadeTouch);
+        this.pauseButton.node.off('click', this.onPauseButtonClick, this);
     },
 });
