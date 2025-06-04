@@ -127,7 +127,7 @@ cc.Class({
     },
 
     update(dt) {
-        if (!this.sceneFsm || !this.sceneFsm.is('playing')) return;
+        if (!this.sceneFsm.is('playing')) return;
 
         if (this.listDieMonster.length >= 5 && !this.isWin) {
             this.unschedule(this.boundSpawnMonsterLevel1);
@@ -138,7 +138,7 @@ cc.Class({
     },
     
     onPauseButtonClick() {
-        if (this.sceneFsm && this.sceneFsm.is('playing')) {
+        if (this.sceneFsm.is('playing')) {
              mEmitter.emit(BATTLE_EVENTS.GAME_EVENTS.GAME_PAUSE_REQUEST);
         }
     },
