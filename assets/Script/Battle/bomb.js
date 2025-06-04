@@ -28,9 +28,7 @@ cc.Class({
     },
     onDisable() {
         this.onExplored();
-        this.scheduleOnce(() => {
-            this.node.active = true;
-        }, 5);
+        this.color = cc.Color.WHITE;
     },
     onExplored() {
         console.log("BOOM!");

@@ -16,14 +16,14 @@ cc.Class({
             type: cc.ProgressBar
         },
         maxHp: {
-            default: 100, 
+            default: 200,
             type: cc.Integer
         },
         currentHp: {
-            default: 100,
+            default: 200,
             type: cc.Integer
         },
-        initialSpeed: { 
+        speed: {
             default: 200,
             type: cc.Integer
         },
@@ -45,106 +45,110 @@ cc.Class({
         this.canvasHalfWidth = designResolution.width / 2;
 
         this.node.setPosition(this.canvasHalfWidth + (this.node.width * this.node.anchorX), 0);
+        this.hpProgressBar.progress = 1;
         this.background = this.node.getChildByName("background");
-        this.speed = 0; 
+
+        const self = this;
 
         this.fsm = new StateMachine({
-            init: 'alive',
+            init: 'moving',
             transitions: [
-                { name: 'hit', from: 'alive', to: 'alive' },
-                { name: 'startDie', from: 'alive', to: 'dying' },
-                { name: 'finishDie', from: 'dying', to: 'dead' }
+                { name: 'getHit', from: 'moving', to: 'hit' },
+                { name: 'backToMoving', from: 'hit', to: 'moving' },
+                { name: 'die', from: ['moving', 'hit'], to: 'dying' }
             ],
             methods: {
-                onEnterAlive: () => {
-                    this.currentHp = this.maxHp;
-                    this.hpProgressBar.progress = 1;
-                    this.node.opacity = 255;
-                    this.node.color = cc.Color.WHITE;
-                    this.speed = this.initialSpeed;
-                    this.startWiggleAnimation();
+                onEnterMoving: function() {
+                    self.node.color = cc.Color.WHITE;
+                    self.startWiggleAnimation();
                 },
-                onHit: (lifecycle, damageAmount) => {
-                    this.currentHp -= damageAmount;
-                    this.hpProgressBar.progress = this.currentHp / this.maxHp;
-                    this.node.color = cc.Color.RED;
-                    this.scheduleOnce(() => {
-                        if (this.node && this.node.isValid) {
-                             this.node.color = cc.Color.WHITE;
-                        }
-                    }, 0.2);
+                onLeaveMoving: function() {
+                    if (self.wiggleAction) {
+                        self.wiggleAction.stop();
+                    }
+                },
+                onEnterHit: function(lifecycle, damageAmount) {
+                    self.currentHp -= damageAmount;
+                    self.hpProgressBar.progress = self.currentHp / self.maxHp;
+                    self.node.color = cc.Color.RED;
 
-                    if (this.currentHp <= 0) {
-                        if (this.fsm.can('startDie')) {
-                           this.fsm.startDie();
-                        }
+                    if (self.currentHp <= 0) {
+                        self.scheduleOnce(() => {
+                            if(this.is('hit') && this.can('die')) {
+                                this.die();
+                            }
+                        },0);
+                    } else {
+                        self.scheduleOnce(() => {
+                            if(this.is('hit') && this.can('backToMoving')) {
+                                this.backToMoving();
+                            }
+                        }, 0.2);
                     }
                 },
-                onBeforeStartDie: () => {
-                    this.speed = 0;
-                    if (this.background && this.background.isValid) {
-                        this.background.stopAllActions();
-                    }
+                onLeaveHit: function() {
                 },
-                onEnterDying: () => {
-                    cc.tween(this.node)
+                onEnterDying: function() {
+                    self.speed = 0;
+                    self.background.stopAllActions();
+                    cc.tween(self.node)
                         .to(1, { opacity: 0 })
                         .call(() => {
-                            if (this.fsm.can('finishDie')) {
-                                this.fsm.finishDie();
-                            }
+                            self.node.destroy();
                         })
                         .start();
-                },
-                onEnterDead: () => {
-                    if (this.node && this.node.isValid) {
-                        this.node.destroy();
-                    }
                 }
             }
         });
     },
     setName(name) {
         this.labelName.string = name;
+        this.node.name = name;
     },
     startWiggleAnimation() {
-        if (this.background && this.background.isValid) {
-            this.background.stopAllActions();
-            cc.tween(this.background)
-                .repeatForever(
-                    cc.tween()
-                        .to(this.wiggleDuration, { angle: this.wiggleAngle })
-                        .to(this.wiggleDuration, { angle: -this.wiggleAngle })
-                        .to(this.wiggleDuration, { angle: 0 })
-                )
-                .start();
+        if (this.wiggleAction) {
+            this.wiggleAction.stop();
         }
+        this.wiggleAction = cc.tween(this.background)
+            .repeatForever(
+                cc.tween()
+                    .to(this.wiggleDuration, { angle: this.wiggleAngle })
+                    .to(this.wiggleDuration, { angle: -this.wiggleAngle })
+                    .to(this.wiggleDuration, { angle: 0 })
+            );
+        this.wiggleAction.start();
     },
     update(dt) {
-        if (this.fsm.is('alive')) {
+        if (this.fsm.is('moving')) {
             this.node.x -= this.speed * dt;
-            if (this.node.x < -(this.canvasHalfWidth + (this.node.width * this.node.anchorX))) {
-                if (this.fsm.can('startDie')) {
-                    this.fsm.startDie();
+        }
+        if (this.fsm.is('moving') || this.fsm.is('hit')) {
+            if (this.node.x < -(this.canvasHalfWidth + (this.node.width * this.node.anchorX))) {  
+                if (this.fsm.can('die')) {
+                    this.fsm.die();
                 }
             }
         }
     },
-    onCollisionEnter: function (other, self) {
-        if (this.fsm.is('alive')) {
-            if (other.node.group === "Obstacle") {
-                if (other.node.parent === self.node.parent) {
-                    if (this.fsm.can('hit')) {
-                        this.fsm.hit(other.getComponent("bomb").attackDamage);
-                    }
-                    mEmitter.emit(BATTLE_EVENTS.TOUCH_EVENTS.ATK_TOUCH, collisionUtils.getTouchPoint(other, self));
-                } else {
-                    mEmitter.emit(BATTLE_EVENTS.TOUCH_EVENTS.EVADE_TOUCH, collisionUtils.getTouchPoint(other, self));
+    onCollisionEnter: function (other, selfCollider) {
+        if (this.fsm.is('dying')) {
+            return;
+        }
+        if (other.node.group === "Obstacle") {
+            if (other.node.parent === selfCollider.node.parent) {
+                if (this.fsm.can('getHit')) {
+                    const damageAmount = other.getComponent("bomb").attackDamage;
+                    this.fsm.getHit(damageAmount);
+                    mEmitter.emit(BATTLE_EVENTS.TOUCH_EVENTS.ATK_TOUCH, collisionUtils.getTouchPoint(other, selfCollider));
                 }
             }
         }
     },
     onDestroy() {
         mEmitter.emit(BATTLE_EVENTS.MONSTER_EVENTS.MONSTER_DIE, this.node.name);
+        this.unscheduleAllCallbacks();
+        if (this.wiggleAction) {
+            this.wiggleAction = null;
+        }
     },
 });

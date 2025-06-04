@@ -18,11 +18,13 @@ cc.Class({
     },
 
     onLoad() {
-        this.hpProgressBar.progress = 1;
         this.background = this.node.getChildByName("background");
 
     },
-
+    onEnable() {
+        this.currentHp = this.maxHp;
+        this.hpProgressBar.progress = 1;
+    },
     onCollisionEnter: function (other, self) {
         if (other.node.group === "MonsterLevel1") {
             if (other.node.parent === self.node.parent) {
@@ -30,7 +32,6 @@ cc.Class({
             }
         }
     },
-
     updateHp(hp) {
         this.currentHp -= hp;
         this.background.color = cc.Color.RED;
